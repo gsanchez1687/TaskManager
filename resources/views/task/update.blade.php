@@ -80,7 +80,7 @@
               @endif
               <tr>
                 <td>
-                  <a class="btn btn-primary" href="{{ route('admin') }}">{{ __('Back') }}</a>
+                  <a class="btn btn-primary" href="/task/admin">{{ __('Back') }}</a>
                   <button type="submit" class="btn btn-primary">Update</button>
                 </td>
               </tr>
