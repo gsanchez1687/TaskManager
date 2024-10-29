@@ -53,7 +53,7 @@
             <input type="date" class="form-control" name="expiration_date" id="expiration_date">
           </div>
         </div>
-        <a class="btn btn-primary" href="{{ route('admin') }}">{{ __('Back') }}</a>
+        <a class="btn btn-primary" href="/task/admin">{{ __('Back') }}</a>
         <input type="submit" class="btn btn-primary" name="save" value="Save" id="save">
       </form>
     </div>

@@ -40,7 +40,7 @@
                   <input type="password" required class="form-control" id="confirmPassword" name="confirmPassword">
                 </div>
               </div>
-              <a href="{{ route('admin') }}" class="btn btn-primary" role="button">{{ __('Back') }}</a>
+              <a href="/task/admin" class="btn btn-primary" role="button">{{ __('Back') }}</a>
             <button type="submit" class="btn btn-primary">Change</button>
         </form>
     </div>

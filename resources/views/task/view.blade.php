@@ -44,7 +44,7 @@
             </tr>
           </table>
           <div>
-            <a class="btn btn-primary" href="{{ route('admin') }}">{{ __('Back') }}</a>
+            <a class="btn btn-primary" href="/task/admin">{{ __('Back') }}</a>
           </div>
     </div>
   </div>
