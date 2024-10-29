@@ -37,7 +37,7 @@
                     <td>{{ $item->getRoleNames()->implode(', ') }}</td>
                     <td>{{ $item->created_at }}</td>
                     <td>
-                        <a class="btn btn-primary btn-block" href="">Update</a>
+                        <a href="{{ route('update', $item->id) }}" class="btn btn-primary btn-block" href="">Update</a>
                     </td>
                   </tr>
               @endforeach

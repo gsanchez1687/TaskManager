@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 use App\Models\TaskUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -65,6 +66,41 @@ class UserController extends Controller
             return redirect()->route('changePassword')->with('success', 'Password Changed Successfully');
         } catch (\Exception $th) {
             return redirect()->route('changePassword')->with('error', 'Password Change Failed: '.$th->getMessage());
+        }
+    }
+
+    public function update(Request $request, $id){
+
+        $user = User::findOrFail($id);
+        $roles = Role::all();
+        //model_has_roles
+        
+        return view('user.update',with([
+            'user' => $user,
+            'roles' => $roles
+        ]));
+    }
+
+    public function updatestore(Request $request){
+
+        try {
+            $this->validate($request, [
+                'name' => 'required',
+                'email' => 'required',
+            ]);
+            $user = User::findOrFail($request->id);
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email
+            ]);
+            if($request->password){
+                $user->update([
+                    'password' => bcrypt($request->password)
+                ]);
+            }
+            return redirect()->route('admin')->with('success', 'User Updated Successfully');
+        } catch (\Exception $th) {
+            return redirect()->route('admin')->with('error', 'User Update Failed: '.$th->getMessage());
         }
     }
 }

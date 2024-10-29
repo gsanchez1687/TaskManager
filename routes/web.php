@@ -55,6 +55,14 @@ Route::post('/user/changePasswordStore', [UserController::class, 'changePassword
 //admin all users
 Route::get('/user/admin', [UserController::class, 'admin'])->name('admin');
 
+
+//update user
+Route::get('/user/update/{id}', [UserController::class, 'update'])->name('update');
+
+
+//store user update
+Route::post('/user/updatestore', [UserController::class, 'updatestore'])->name('updatestore')->middleware('sanitize');
+
 //auth google
 Route::get('/google-auth/redirect', function () {
     return Socialite::driver('google')->redirect();
