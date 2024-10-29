@@ -15,6 +15,14 @@ class UserController extends Controller
     {
         $this->middleware('auth');
     }
+
+    public function admin(){
+
+        $users = User::orderBy('id', 'desc')->paginate(10);
+        return view('user.admin', with([
+            'users' => $users
+        ]));
+    }
     
     public function profile()
     {

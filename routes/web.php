@@ -52,6 +52,9 @@ Route::get('/user/changePassword', [UserController::class, 'changePassword'])->n
 //change password store
 Route::post('/user/changePasswordStore', [UserController::class, 'changePasswordStore'])->name('changePasswordStore')->middleware('sanitize');
 
+//admin all users
+Route::get('/user/admin', [UserController::class, 'admin'])->name('admin');
+
 //auth google
 Route::get('/google-auth/redirect', function () {
     return Socialite::driver('google')->redirect();
@@ -66,6 +69,7 @@ Route::get('/google-auth/callback', function () {
         'name'=>$userGoogle->name,
         'email'=>$userGoogle->email,
     ]);
+    $user->assignRole('Usuario');
     Auth::login($user);
     return redirect('/task/admin');
 });
