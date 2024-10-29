@@ -59,7 +59,7 @@ Route::get('/user/admin', [UserController::class, 'admin'])->name('admin');
 Route::get('/google-auth/redirect', function () {
     return Socialite::driver('google')->redirect();
 });
- 
+
 Route::get('/google-auth/callback', function () {
     $userGoogle = Socialite::driver('google')->stateless()->user();
     $user = User::updateOrCreate([

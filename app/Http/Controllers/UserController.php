@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -23,7 +23,7 @@ class UserController extends Controller
             'users' => $users
         ]));
     }
-    
+
     public function profile()
     {
         $auth = Auth::user();
