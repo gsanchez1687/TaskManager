@@ -78,8 +78,20 @@ class TaskController extends Controller
 
         try {
             DB::beginTransaction();
+
+            $this->validate($request, [
+                'title' => 'required|min:5',
+                'description' => 'required|min:5',
+                'credit_for_task' => 'required|numeric',
+                'expiration_date' => 'required|date',
+                'status' => 'required'
+            ]);
             $user = auth()->user();
             $task = Task::findOrFail($id);
+            $task->title = $request->title;
+            $task->description = $request->description;
+            $task->credit_for_task = $request->credit_for_task;
+            $task->expiration_date = $request->expiration_date;
             $task->statu_id = $request->status;
             $task->save();
 

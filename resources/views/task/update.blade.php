@@ -26,25 +26,27 @@
     </div>
     <div class="card-body">
           <table class="table">
+            <form action="{{ route('updateStatus', $task->id) }}" method="POST">
+            @csrf
             <tr>
               <td>ID</td>
               <td>{{ $task->id }}</td>
             </tr>
             <tr>
               <td>{{ __('Title:') }}</td>
-              <td>{{ $task->title }}</td>
+              <td><input type="text" class="form-control" name="title" id="title" value="{{ $task->title }}"></td>
             </tr>
             <tr>
               <td>{{ __('Description:') }}</td>
-              <td>{{ $task->description }}</td>
+              <td><input type="text" class="form-control" name="description" id="description" value="{{ $task->description }}"></td>
             </tr>
             <tr>
               <td>{{ __('Credit Value:') }}</td>
-              <td>{{ $task->credit_for_task }}</td>
+              <td><input type="number" class="form-control" name="credit_for_task" id="credit_for_task" value="{{ $task->credit_for_task }}"></td>
             </tr>
             <tr>
               <td>{{ __('Expedition Date:') }}</td>
-              <td>{{ $task->expiration_date }}</td>
+              <td><input type="date" class="form-control" name="expiration_date" id="expiration_date" value="{{ $task->expiration_date }}"></td>
             </tr>
             <tr>
               <td>{{ __('Days Left:') }}</td>
@@ -54,8 +56,6 @@
               <td>{{ __('Status:') }}</td>
               <td class="{{ $task->statu->style }}">{{ $task->statu->name }}</td>
             </tr>
-            <form action="{{ route('updateStatus', $task->id) }}" method="POST">
-            @csrf
               <tr>
                   <td>Status</td>
                   <td>
