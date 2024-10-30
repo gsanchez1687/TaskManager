@@ -13,21 +13,21 @@ class SeederTasks extends Seeder
     public function run(): void
     {
         $tasks = [
-            ['title' => 'Task 1', 'description' => 'Description 1', 'credit_for_task' => 1, 'expiration_date' => '2024-11-01', 'hours_passed' => 0, 'statu_id' => 1],
-            ['title' => 'Task 2', 'description' => 'Description 2', 'credit_for_task' => 2, 'expiration_date' => '2024-11-05', 'hours_passed' => 0, 'statu_id' => 1],
-            ['title' => 'Task 3', 'description' => 'Description 3', 'credit_for_task' => 3, 'expiration_date' => '2024-11-15', 'hours_passed' => 0, 'statu_id' => 1],
-            ['title' => 'Task 4', 'description' => 'Description 4', 'credit_for_task' => 3, 'expiration_date' => '2024-11-20', 'hours_passed' => 0, 'statu_id' => 1],
-            ['title' => 'Task 5', 'description' => 'Description 5', 'credit_for_task' => 3, 'expiration_date' => '2024-11-25', 'hours_passed' => 0, 'statu_id' => 1],
-            ['title' => 'Task 6', 'description' => 'Description 6', 'credit_for_task' => 3, 'expiration_date' => '2024-11-30', 'hours_passed' => 0, 'statu_id' => 1],
-            ['title' => 'Task 7', 'description' => 'Description 7', 'credit_for_task' => 3, 'expiration_date' => '2024-12-01', 'hours_passed' => 0, 'statu_id' => 1],
-            ['title' => 'Task 8', 'description' => 'Description 8', 'credit_for_task' => 3, 'expiration_date' => '2024-12-05', 'hours_passed' => 0, 'statu_id' => 1],
-            ['title' => 'Task 9', 'description' => 'Description 9', 'credit_for_task' => 3, 'expiration_date' => '2024-12-15', 'hours_passed' => 0, 'statu_id' => 1],
-            ['title' => 'Task 10', 'description' => 'Description 10', 'credit_for_task' => 3, 'expiration_date' => '2024-12-20', 'hours_passed' => 0, 'statu_id' => 1],
-            ['title' => 'Task 11', 'description' => 'Description 11', 'credit_for_task' => 3, 'expiration_date' => '2024-12-25', 'hours_passed' => 0, 'statu_id' => 1],
-            ['title' => 'Task 12', 'description' => 'Description 12', 'credit_for_task' => 3, 'expiration_date' => '2024-12-30', 'hours_passed' => 0, 'statu_id' => 1],
-            ['title' => 'Task 13', 'description' => 'Description 13', 'credit_for_task' => 3, 'expiration_date' => '2025-01-01', 'hours_passed' => 0, 'statu_id' => 1],
-            ['title' => 'Task 14', 'description' => 'Description 14', 'credit_for_task' => 3, 'expiration_date' => '2025-01-05', 'hours_passed' => 0, 'statu_id' => 1],
-            ['title' => 'Task 15', 'description' => 'Description 15', 'credit_for_task' => 3, 'expiration_date' => '2025-01-15', 'hours_passed' => 0, 'statu_id' => 1],
+            ['title' => 'Wash the dishes', 'description' => 'Clean all plates, glasses, utensils, and cookware used in preparing or eating meals.', 'credit_for_task' => 1, 'expiration_date' => '2024-11-01', 'hours_passed' => 0, 'statu_id' => 1],
+            ['title' => 'Vacuum the floors', 'description' => 'Use a vacuum cleaner to remove dirt, dust, and crumbs from carpets or hard floors.', 'credit_for_task' => 2, 'expiration_date' => '2024-11-05', 'hours_passed' => 0, 'statu_id' => 1],
+            ['title' => 'Take out the trash', 'description' => 'Collect all household waste and put it in the outdoor trash bin for disposal.', 'credit_for_task' => 3, 'expiration_date' => '2024-11-15', 'hours_passed' => 0, 'statu_id' => 1],
+            ['title' => 'Dust the furniture', 'description' => 'Remove dust from surfaces like tables, shelves, and other furniture with a cloth or duster.', 'credit_for_task' => 3, 'expiration_date' => '2024-11-20', 'hours_passed' => 0, 'statu_id' => 1],
+            ['title' => 'Sweep the floor', 'description' => 'Use a broom to gather dirt and dust from the floor into a dustpan.', 'credit_for_task' => 3, 'expiration_date' => '2024-11-25', 'hours_passed' => 0, 'statu_id' => 1],
+            ['title' => 'Mop the floor', 'description' => 'Clean hard floors by using a mop and cleaning solution to remove stains and dirt.', 'credit_for_task' => 3, 'expiration_date' => '2024-11-30', 'hours_passed' => 0, 'statu_id' => 1],
+            ['title' => 'Make the bed', 'description' => 'Arrange the bed sheets, pillows, and blanket neatly to prepare the bed for use.', 'credit_for_task' => 3, 'expiration_date' => '2024-12-01', 'hours_passed' => 0, 'statu_id' => 1],
+            ['title' => 'Do the laundry', 'description' => 'Wash dirty clothes, sheets, and towels in the washing machine, and then dry them.', 'credit_for_task' => 3, 'expiration_date' => '2024-12-05', 'hours_passed' => 0, 'statu_id' => 1],
+            ['title' => 'Clean the windows', 'description' => 'Wipe windows with glass cleaner and a cloth or paper towel to make them clear and streak-free.', 'credit_for_task' => 3, 'expiration_date' => '2024-12-15', 'hours_passed' => 0, 'statu_id' => 1],
+            ['title' => 'Organize the closet', 'description' => 'Sort clothes, shoes, and other items in the closet to keep it neat and accessible.', 'credit_for_task' => 3, 'expiration_date' => '2024-12-20', 'hours_passed' => 0, 'statu_id' => 1],
+            ['title' => 'Wipe down the countertops', 'description' => 'Clean kitchen and bathroom counters with a cloth and cleaner to remove stains, crumbs, and bacteria.', 'credit_for_task' => 3, 'expiration_date' => '2024-12-25', 'hours_passed' => 0, 'statu_id' => 1],
+            ['title' => 'Water the plants', 'description' => 'Give the plants the necessary amount of water to keep them healthy.', 'credit_for_task' => 3, 'expiration_date' => '2024-12-30', 'hours_passed' => 0, 'statu_id' => 1],
+            ['title' => 'Clean the bathroom', 'description' => 'Scrub and sanitize the sink, toilet, bathtub, and mirrors in the bathroom.', 'credit_for_task' => 3, 'expiration_date' => '2025-01-01', 'hours_passed' => 0, 'statu_id' => 1],
+            ['title' => 'Fold the laundry', 'description' => 'Arrange clean, dry clothes neatly to make them ready for storage in drawers or closets.', 'credit_for_task' => 3, 'expiration_date' => '2025-01-05', 'hours_passed' => 0, 'statu_id' => 1],
+            ['title' => 'Clean the fridge', 'description' => 'Discard expired items and wipe down shelves and drawers in the refrigerator to keep it sanitary.', 'credit_for_task' => 3, 'expiration_date' => '2025-01-15', 'hours_passed' => 0, 'statu_id' => 1],
         ];
 
         foreach ($tasks as $key => $value) {

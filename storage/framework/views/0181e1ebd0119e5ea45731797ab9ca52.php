@@ -19,7 +19,7 @@
         <div class="mb-3">
           <a class="btn btn-primary" href="<?php echo e(route('create')); ?>"><?php echo e(__('New Household chores')); ?></a>
           
-          <a class="btn btn-primary" href="/user/admin"><?php echo e(__('Admin users')); ?></a>
+          <a class="btn btn-primary" href="/user/admin"><?php echo e(__('My Children')); ?></a>
         </div>
         <table class="table table-striped table-bordered">
           <thead>
