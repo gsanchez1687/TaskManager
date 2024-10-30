@@ -58,7 +58,7 @@
             </div>
           </div>
 
-        <a class="btn btn-primary" href="/task/admin">{{ __('Back') }}</a>
+        <a class="btn btn-primary" href="/user/admin">{{ __('Back') }}</a>
         <input type="submit" class="btn btn-primary" name="save" value="Save" id="save">
       </form>
     </div>

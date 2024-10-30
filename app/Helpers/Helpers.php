@@ -122,4 +122,15 @@ class Helpers
             return 0;
         }
     }
+
+    //obtener el credito de un usuario
+    public static function getCreditByUser(int $user_id): int
+    {
+        $credit = TaskUser::where('user_id', $user_id)->sum('credit');
+        if ($credit) {
+            return $credit;
+        } else {
+            return 0;
+        }
+    }
 }

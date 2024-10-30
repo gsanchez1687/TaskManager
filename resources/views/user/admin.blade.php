@@ -37,9 +37,11 @@
               <th>ID</th>
               <th>name</th>
               <th>email</th>
+              <th>Credits</th>
               <th>Google</th>
               <th>Rol</th>
               <th>Created</th>
+              <th>Updated</th>
               <th>Actions</th>
           </thead>
           <tbody></tbody>
@@ -48,9 +50,11 @@
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->email }}</td>
+                    <td>{{ Helpers::getCreditByUser($item->id); }}</td>
                     <td>{{ $item->google_id ? 'Yes' : 'No' }}</td>
                     <td>{{ $item->getRoleNames()->implode(', ') }}</td>
                     <td>{{ $item->created_at }}</td>
+                    <td>{{ $item->updated_at }}</td>
                     <td>
                         <a href="{{ route('update', $item->id) }}" class="btn btn-primary btn-block" href="">Update</a>
                     </td>

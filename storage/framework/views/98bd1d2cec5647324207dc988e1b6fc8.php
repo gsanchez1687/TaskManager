@@ -42,6 +42,10 @@
                 <td><input type="password" class="form-control" name="password" id="password"></td>
             </tr>
             <tr>
+                <td><?php echo e(__('Credit:')); ?></td>
+                <td><input type="number" class="form-control" name="credit" id="credit" value="<?php echo e(Helpers::getCreditByUser($user->id)); ?>"></td>
+            </tr>
+            <tr>
                 <td><?php echo e(__('Roles:')); ?></td>
                 <td>
                   <select class="form-control" name="roles" id="roles">

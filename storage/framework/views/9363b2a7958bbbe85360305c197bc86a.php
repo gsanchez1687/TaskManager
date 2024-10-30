@@ -38,9 +38,11 @@
               <th>ID</th>
               <th>name</th>
               <th>email</th>
+              <th>Credits</th>
               <th>Google</th>
               <th>Rol</th>
               <th>Created</th>
+              <th>Updated</th>
               <th>Actions</th>
           </thead>
           <tbody></tbody>
@@ -49,9 +51,11 @@
                     <td><?php echo e($item->id); ?></td>
                     <td><?php echo e($item->name); ?></td>
                     <td><?php echo e($item->email); ?></td>
+                    <td><?php echo e(Helpers::getCreditByUser($item->id)); ?></td>
                     <td><?php echo e($item->google_id ? 'Yes' : 'No'); ?></td>
                     <td><?php echo e($item->getRoleNames()->implode(', ')); ?></td>
                     <td><?php echo e($item->created_at); ?></td>
+                    <td><?php echo e($item->updated_at); ?></td>
                     <td>
                         <a href="<?php echo e(route('update', $item->id)); ?>" class="btn btn-primary btn-block" href="">Update</a>
                     </td>
