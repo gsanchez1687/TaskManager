@@ -46,7 +46,7 @@
                       <td><?php echo e(Helpers::getAssignedTask($item->id)); ?></td>
                       <td>
                           <a class="btn btn-primary btn-block" href="<?php echo e(route('view', $item->id)); ?>">Show</a>
-                          <a class="btn btn-primary btn-block" href="<?php echo e(route('update', $item->id)); ?>">Update</a>
+                          <a class="btn btn-primary btn-block" href="<?php echo e(route('task.update', $item->id)); ?>">Update</a>
                       </td>
                   </tr>
               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

@@ -34,7 +34,7 @@ Route::get('/task/create', [TaskController::class, 'create'])->name('create');
 Route::get('/task/view/{id}', [TaskController::class, 'show'])->name('view');
 
 //update task by id
-Route::get('/task/update/{id}', [TaskController::class, 'update'])->name('update');
+Route::get('/task/update/{id}', [TaskController::class, 'update'])->name('task.update');
 
 //edit task
 Route::post('/task/updateStatus/{id}', [TaskController::class, 'updateStatus'])->name('updateStatus');

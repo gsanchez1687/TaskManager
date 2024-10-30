@@ -47,7 +47,7 @@
                       <td>{{ Helpers::getAssignedTask($item->id) }}</td>
                       <td>
                           <a class="btn btn-primary btn-block" href="{{ route('view', $item->id) }}">Show</a>
-                          <a class="btn btn-primary btn-block" href="{{ route('update', $item->id) }}">Update</a>
+                          <a class="btn btn-primary btn-block" href="{{ route('task.update', $item->id) }}">Update</a>
                       </td>
                   </tr>
               @endforeach
