@@ -34,7 +34,7 @@
                 <td><input type="text" class="form-control" name="name" id="name" value="<?php echo e($user->name); ?>"></td>
             </tr>
             <tr>
-                <td><?php echo e(__('Email:')); ?></td> 
+                <td><?php echo e(__('Email:')); ?></td>
                 <td><input type="text" class="form-control" name="email" id="email" value="<?php echo e($user->email); ?>"></td>
             </tr>
             <tr>
