@@ -74,9 +74,11 @@ class UserController extends Controller
             $user->assignRole($request->roles);
 
             DB::commit();
+
             return redirect()->route('admin')->with('success', 'User Created Successfully');
         } catch (\Exception $th) {
             DB::rollBack();
+
             return redirect()->route('admin')->with('error', 'User Creation Failed: '.$th->getMessage());
         }
     }
