@@ -114,7 +114,7 @@
                       <td>{{ Helpers::getHoursPassed($item->task->hours_passed, ['format' => 'full','locale'=>'en']) }}</td>
                       <td>
                           <a class="btn btn-primary btn-block" href="{{ route('view', $item->task->id) }}">Show</a>
-                          <a class="btn btn-primary btn-block" href="{{ route('update', $item->task->id) }}">Update</a>
+                          <a class="btn btn-primary btn-block" href="{{ route('task.update', $item->task->id) }}">Update</a>
                       </td>
                   </tr>
               @endforeach

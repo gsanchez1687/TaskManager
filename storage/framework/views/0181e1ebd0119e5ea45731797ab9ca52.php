@@ -115,7 +115,7 @@
                       <td><?php echo e(Helpers::getHoursPassed($item->task->hours_passed, ['format' => 'full','locale'=>'en'])); ?></td>
                       <td>
                           <a class="btn btn-primary btn-block" href="<?php echo e(route('view', $item->task->id)); ?>">Show</a>
-                          <a class="btn btn-primary btn-block" href="<?php echo e(route('update', $item->task->id)); ?>">Update</a>
+                          <a class="btn btn-primary btn-block" href="<?php echo e(route('task.update', $item->task->id)); ?>">Update</a>
                       </td>
                   </tr>
               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
