@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Models\Task;
+use Illuminate\Console\Command;
 
 class TaskCron extends Command
 {

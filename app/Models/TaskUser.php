@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TaskUser extends Model
 {
     use HasFactory;
+
     protected $table = 'tasks_users';
 
     protected $fillable = [
@@ -20,7 +21,7 @@ class TaskUser extends Model
     {
         return $this->belongsTo(Task::class);
     }
-    
+
     public function user()
     {
         return $this->belongsTo(User::class);

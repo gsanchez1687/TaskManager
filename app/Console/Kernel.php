@@ -7,16 +7,16 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
-
     protected $commands = [
-        Commands\TaskCron::class
+        Commands\TaskCron::class,
     ];
+
     /**
      * Define the application's command schedule.
      */
     protected function schedule(Schedule $schedule): void
     {
-         $schedule->command('app:task')->everyMinute();
+        $schedule->command('app:task')->everyMinute();
     }
 
     /**

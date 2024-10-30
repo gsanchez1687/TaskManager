@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\Status;
+use Illuminate\Database\Seeder;
 
 class SeederStatus extends Seeder
 {
@@ -14,12 +13,12 @@ class SeederStatus extends Seeder
     public function run(): void
     {
         $status = [
-           ['name' => 'Active','style'=>'text-primary'],
-           ['name' => 'Inactive','style'=>'text-danger'],
-           ['name' => 'Pending','style'=>'text-warning'],
-           ['name' => 'Suspended','style'=>'text-info'],
-           ['name' => 'Completed','style'=>'text-success'],
-           ['name' => 'Expired','style'=>'text-dark'],
+            ['name' => 'Active', 'style' => 'text-primary'],
+            ['name' => 'Inactive', 'style' => 'text-danger'],
+            ['name' => 'Pending', 'style' => 'text-warning'],
+            ['name' => 'Suspended', 'style' => 'text-info'],
+            ['name' => 'Completed', 'style' => 'text-success'],
+            ['name' => 'Expired', 'style' => 'text-dark'],
         ];
 
         foreach ($status as $key => $value) {

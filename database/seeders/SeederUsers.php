@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 
 class SeederUsers extends Seeder
@@ -32,14 +31,14 @@ class SeederUsers extends Seeder
 
         $aliadoRole = Role::where('name', 'Usuario')->first();
         foreach ($users as $key => $value) {
-           $user = User::create($value);
-           $user->assignRole($aliadoRole);
+            $user = User::create($value);
+            $user->assignRole($aliadoRole);
         }
 
         $aliadoRole = Role::where('name', 'Admin')->first();
         foreach ($admin as $key => $value) {
-           $user = User::create($value);
-           $user->assignRole($aliadoRole);
+            $user = User::create($value);
+            $user->assignRole($aliadoRole);
         }
 
     }

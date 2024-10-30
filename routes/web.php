@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
-use Laravel\Socialite\Facades\Socialite;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +45,6 @@ Route::post('/task/store', [TaskController::class, 'store'])->name('store')->mid
 //my profile
 Route::get('/user/profile', [UserController::class, 'profile'])->name('profile');
 
-
 //change password
 Route::get('/user/changePassword', [UserController::class, 'changePassword'])->name('changePassword');
 
@@ -54,7 +53,6 @@ Route::post('/user/changePasswordStore', [UserController::class, 'changePassword
 
 //admin all users
 Route::get('/user/admin', [UserController::class, 'admin'])->name('admin');
-
 
 //update user
 Route::get('/user/update/{id}', [UserController::class, 'update'])->name('update');
@@ -76,13 +74,14 @@ Route::get('/google-auth/redirect', function () {
 Route::get('/google-auth/callback', function () {
     $userGoogle = Socialite::driver('google')->stateless()->user();
     $user = User::updateOrCreate([
-        'google_id'=>$userGoogle->id
+        'google_id' => $userGoogle->id,
     ],
-    [
-        'name'=>$userGoogle->name,
-        'email'=>$userGoogle->email,
-    ]);
+        [
+            'name' => $userGoogle->name,
+            'email' => $userGoogle->email,
+        ]);
     $user->assignRole('Usuario');
     Auth::login($user);
+
     return redirect('/task/admin');
 });

@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use App\Models\User;
 use App\Models\Task;
 use App\Models\TaskUser;
+use App\Models\User;
+use Illuminate\Database\Seeder;
+
 class SeederTasksUers extends Seeder
 {
     /**
@@ -14,7 +14,7 @@ class SeederTasksUers extends Seeder
      */
     public function run(): void
     {
-        
+
         $user = User::all();
         $task = Task::all();
 

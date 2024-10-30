@@ -16,6 +16,7 @@ class SanitizeInput
             $item = preg_replace('/[^A-Za-z0-9@_ ]/', '', $item);
         });
         $request->merge($input);
+
         return $next($request);
     }
 }
