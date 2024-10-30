@@ -36,7 +36,7 @@
         <div class="form-group row">
           <label for="email" class="col-sm-2 col-form-label">{{ __('email') }}</label>
           <div class="col-sm-10">
-            <input type="text" required class="form-control" name="email" id="email">
+            <input type="email" required class="form-control" name="email" id="email">
           </div>
         </div>
 
