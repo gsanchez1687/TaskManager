@@ -65,7 +65,7 @@ class Helpers
         if ($assigned) {
             return $assigned->user->name;
         } else {
-            return '--Sin asignar--';
+            return '--Unassigned--';
         }
 
     }
