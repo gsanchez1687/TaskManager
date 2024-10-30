@@ -42,6 +42,20 @@
               <td><input type="text" class="form-control" name="description" id="description" value="<?php echo e($task->description); ?>"></td>
             </tr>
             <tr>
+              <td><?php echo e(__('Expedition Date:')); ?></td>
+              <td><input type="date" class="form-control" name="expiration_date" id="expiration_date" value="<?php echo e($task->expiration_date); ?>"></td>
+            </tr>
+            <tr>
+              <td><?php echo e(__('Status to change:')); ?></td>
+              <td>
+                  <select class="form-control" name="status" id="status">
+                      <?php $__currentLoopData = $status; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                          <option <?php echo e($task->statu_id == $item->id ? 'selected' : ''); ?> value="<?php echo e($item->id); ?>"><?php echo e($item->name); ?></option>
+                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                  </select>
+              </td>
+          </tr>
+            <tr>
               <td><?php echo e(__('Credit value:')); ?></td>
               <?php if( Auth::user()->hasRole('Admin')): ?>
                 <td><input type="number" class="form-control" name="credit_for_task" id="credit_for_task" value="<?php echo e($task->credit_for_task); ?>"></td>
@@ -49,10 +63,19 @@
                 <td><?php echo e($task->credit_for_task); ?></td>
               <?php endif; ?>
             </tr>
+          <?php if( Auth::user()->hasRole('Admin')): ?>
             <tr>
-              <td><?php echo e(__('Expedition Date:')); ?></td>
-              <td><input type="date" class="form-control" name="expiration_date" id="expiration_date" value="<?php echo e($task->expiration_date); ?>"></td>
+              <td><?php echo e(__('Select Daughter:')); ?></td>
+              <td>
+                <select class="form-control" name="nonAdminUsers" id="nonAdminUsers">
+                    <option value="0">Select daughter...</option>
+                    <?php $__currentLoopData = $nonAdminUsers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option value="<?php echo e($item->id); ?>"><?php echo e($item->name); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </select>
+              </td>
             </tr>
+          <?php endif; ?>
             <tr>
               <td><?php echo e(__('Days Left:')); ?></td>
               <td><?php echo e(Helpers::getHoursPassed($task->hours_passed, ['format' => 'full','locale'=>'en'])); ?></td>
@@ -61,34 +84,12 @@
               <td><?php echo e(__('Current status:')); ?></td>
               <td class="<?php echo e($task->statu->style); ?>"><?php echo e($task->statu->name); ?></td>
             </tr>
-              <tr>
-                  <td><?php echo e(__('Status to change:')); ?></td>
-                  <td>
-                      <select class="form-control" name="status" id="status">
-                          <?php $__currentLoopData = $status; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                              <option value="<?php echo e($item->id); ?>"><?php echo e($item->name); ?></option>
-                          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                      </select>
-                  </td>
-              </tr>
-              <?php if( Auth::user()->hasRole('Admin')): ?>
-                <tr>
-                  <td><?php echo e(__('Select Daughter:')); ?></td>
-                  <td>
-                    <select class="form-control" name="nonAdminUsers" id="nonAdminUsers">
-                        <?php $__currentLoopData = $nonAdminUsers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <option value="<?php echo e($item->id); ?>"><?php echo e($item->name); ?></option>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </select>
-                  </td>
-                </tr>
-              <?php endif; ?>
-              <tr>
+            <tr>
                 <td>
                   <a class="btn btn-primary" href="/task/admin"><?php echo e(__('Back')); ?></a>
                   <button type="submit" class="btn btn-primary">Update</button>
                 </td>
-              </tr>
+            </tr>
             </form>
           </table>
     </div>

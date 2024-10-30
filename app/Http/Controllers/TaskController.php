@@ -93,6 +93,9 @@ class TaskController extends Controller
                 'status' => 'required',
             ]);
             $user = auth()->user();
+            $TaskUser = TaskUser::where('user_id', $user->id)
+            ->where('task_id', $id)
+            ->first();
             $task = Task::findOrFail($id);
             $task->title = $request->title;
             $task->description = $request->description;
@@ -102,16 +105,17 @@ class TaskController extends Controller
             $task->save();
 
             if ($request->status == 5) {
-                $TaskUser = TaskUser::where('user_id', $user->id)
-                    ->where('task_id', $id)
-                    ->first();
                 if ($TaskUser && $TaskUser->credit == 0) {
                     $TaskUser->credit = $TaskUser->credit + $task->credit_for_task;
                     $TaskUser->save();
                 }
             }
+            if($request->status != 5 && $TaskUser->credit != 0){
+                $TaskUser->credit =  $TaskUser->credit - $task->credit_for_task;
+                $TaskUser->save();
+            }
 
-            if ($request->nonAdminUsers) {
+            if ($request->nonAdminUsers != 0) {
                 TaskUser::create([
                     'task_id' => $id,
                     'user_id' => $request->nonAdminUsers,
