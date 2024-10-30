@@ -1,7 +1,7 @@
 <?php $__env->startSection('title', 'Dashboard'); ?>
 
 <?php $__env->startSection('content_header'); ?>
-    <h1><?php echo e(__('View Task')); ?> - <?php echo e($task->title); ?> </h1>
+    <h1><?php echo e(__('Detail household chores')); ?> - <?php echo e($task->title); ?> </h1>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -26,7 +26,7 @@
               <td><?php echo e($task->description); ?></td>
             </tr>
             <tr>
-              <td><?php echo e(__('Credit Value:')); ?></td>
+              <td><?php echo e(__('Credit value:')); ?></td>
               <td><?php echo e($task->credit_for_task); ?></td>
             </tr>
             <tr>

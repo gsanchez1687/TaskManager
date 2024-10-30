@@ -1,14 +1,14 @@
 <?php $__env->startSection('title', 'Dashboard'); ?>
 
 <?php $__env->startSection('content_header'); ?>
-    <h1>Dashboard</h1>
+    <h1><?php echo e(__('New Household chores')); ?></h1>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
 
 <div class="card">
     <div class="card-header">
-      <?php echo e(__('Create Task')); ?>
+      <?php echo e(__('New Household chores')); ?>
 
     </div>
     <div>
@@ -42,7 +42,7 @@
         </div>
 
         <div class="form-group row">
-          <label for="credit_for_task" class="col-sm-2 col-form-label"><?php echo e(__('Credit Value')); ?></label>
+          <label for="credit_for_task" class="col-sm-2 col-form-label"><?php echo e(__('Credit value')); ?></label>
           <div class="col-sm-10">
             <input type="number" class="form-control" name="credit_for_task" id="credit_for_task">
           </div>

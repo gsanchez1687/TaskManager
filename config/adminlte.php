@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'My Task',
+    'title' => 'My Household Chores',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -317,12 +317,12 @@ return [
         ],
         ['header' => 'account_settings'],
         [
-            'text' => 'My Task',
+            'text' => 'Household Chores',
             'url' => 'task/admin',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'My profile',
+            'text' => 'My Profile',
             'url' => 'user/profile',
             'icon' => 'fas fa-fw fa-user',
         ],

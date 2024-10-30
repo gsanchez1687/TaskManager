@@ -1,7 +1,7 @@
 <?php $__env->startSection('title', 'Dashboard'); ?>
 
 <?php $__env->startSection('content_header'); ?>
-    <h1><?php echo e(__('Admin Task')); ?></h1>
+    <h1><?php echo e(__('Household chores')); ?></h1>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -11,13 +11,13 @@
 
 <div class="card">
   <div class="card-header">
-    <?php echo e(__('My Tasks Admin')); ?>
+    <?php echo e(__('My household chores')); ?>
 
   </div>
   
   <div class="card-body">
         <div class="mb-3">
-          <a class="btn btn-primary" href="<?php echo e(route('create')); ?>"><?php echo e(__('Add Task')); ?></a>
+          <a class="btn btn-primary" href="<?php echo e(route('create')); ?>"><?php echo e(__('New Household chores')); ?></a>
           
           <a class="btn btn-primary" href="/user/admin"><?php echo e(__('Admin users')); ?></a>
         </div>
@@ -62,7 +62,7 @@
 <?php else: ?>
 <div class="card">
   <div class="card-header">
-    <?php echo e(__('My Tasks Admin')); ?>
+    <?php echo e(__('My household chores')); ?>
 
   </div>
   <div class="row ml-2">

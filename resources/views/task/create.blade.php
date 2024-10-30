@@ -3,14 +3,14 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>{{ __('New Household chores') }}</h1>
 @stop
 
 @section('content')
 
 <div class="card">
     <div class="card-header">
-      {{ __('Create Task') }}
+      {{ __('New Household chores') }}
     </div>
     <div>
       @if (session('success'))
@@ -41,7 +41,7 @@
         </div>
 
         <div class="form-group row">
-          <label for="credit_for_task" class="col-sm-2 col-form-label">{{ __('Credit Value') }}</label>
+          <label for="credit_for_task" class="col-sm-2 col-form-label">{{ __('Credit value') }}</label>
           <div class="col-sm-10">
             <input type="number" class="form-control" name="credit_for_task" id="credit_for_task">
           </div>

@@ -42,8 +42,12 @@
               <td><input type="text" class="form-control" name="description" id="description" value="<?php echo e($task->description); ?>"></td>
             </tr>
             <tr>
-              <td><?php echo e(__('Credit Value:')); ?></td>
-              <td><input type="number" class="form-control" name="credit_for_task" id="credit_for_task" value="<?php echo e($task->credit_for_task); ?>"></td>
+              <td><?php echo e(__('Credit value:')); ?></td>
+              <?php if( Auth::user()->hasRole('Admin')): ?>
+                <td><input type="number" class="form-control" name="credit_for_task" id="credit_for_task" value="<?php echo e($task->credit_for_task); ?>"></td>
+              <?php else: ?>
+                <td><?php echo e($task->credit_for_task); ?></td>
+              <?php endif; ?>
             </tr>
             <tr>
               <td><?php echo e(__('Expedition Date:')); ?></td>
@@ -54,11 +58,11 @@
               <td><?php echo e(Helpers::getHoursPassed($task->hours_passed, ['format' => 'full','locale'=>'en'])); ?></td>
             </tr>
             <tr>
-              <td><?php echo e(__('Status:')); ?></td>
+              <td><?php echo e(__('Current status:')); ?></td>
               <td class="<?php echo e($task->statu->style); ?>"><?php echo e($task->statu->name); ?></td>
             </tr>
               <tr>
-                  <td>Status</td>
+                  <td><?php echo e(__('Status to change:')); ?></td>
                   <td>
                       <select class="form-control" name="status" id="status">
                           <?php $__currentLoopData = $status; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

@@ -35,7 +35,7 @@
 <?php if( !Auth::user()->hasRole('Admin')): ?>
     <div class="card">
         <div class="card-header">
-        <?php echo e(__('My List Tasks')); ?>
+        <?php echo e(__('My List household chores')); ?>
 
         </div>
         <div class="card-body">

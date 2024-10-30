@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>{{ __('View Task') }} - {{ $task->title }} </h1>
+    <h1>{{ __('Detail household chores') }} - {{ $task->title }} </h1>
 @stop
 
 @section('content')
@@ -27,7 +27,7 @@
               <td>{{ $task->description }}</td>
             </tr>
             <tr>
-              <td>{{ __('Credit Value:') }}</td>
+              <td>{{ __('Credit value:') }}</td>
               <td>{{ $task->credit_for_task }}</td>
             </tr>
             <tr>

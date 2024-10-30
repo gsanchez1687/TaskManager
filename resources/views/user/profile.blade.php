@@ -36,7 +36,7 @@
 @if( !Auth::user()->hasRole('Admin'))
     <div class="card">
         <div class="card-header">
-        {{ __('My List Tasks') }}
+        {{ __('My List household chores') }}
         </div>
         <div class="card-body">
             <table class="table table-striped">

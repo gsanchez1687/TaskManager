@@ -88,7 +88,7 @@ class TaskController extends Controller
             $this->validate($request, [
                 'title' => 'required|min:5',
                 'description' => 'required|min:5',
-                'credit_for_task' => 'required|numeric',
+                'credit_for_task' => 'numeric',
                 'expiration_date' => 'required|date',
                 'status' => 'required',
             ]);
@@ -96,7 +96,7 @@ class TaskController extends Controller
             $task = Task::findOrFail($id);
             $task->title = $request->title;
             $task->description = $request->description;
-            $task->credit_for_task = $request->credit_for_task;
+            $task->credit_for_task = $request->credit_for_task ? $request->credit_for_task : $task->credit_for_task;
             $task->expiration_date = $request->expiration_date;
             $task->statu_id = $request->status;
             $task->save();

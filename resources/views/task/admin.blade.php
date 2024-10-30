@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>{{ __('Admin Task') }}</h1>
+    <h1>{{ __('Household chores') }}</h1>
 @stop
 
 @section('content')
@@ -13,12 +13,12 @@
 
 <div class="card">
   <div class="card-header">
-    {{ __('My Tasks Admin') }}
+    {{ __('My household chores') }}
   </div>
   
   <div class="card-body">
         <div class="mb-3">
-          <a class="btn btn-primary" href="{{ route('create') }}">{{ __('Add Task') }}</a>
+          <a class="btn btn-primary" href="{{ route('create') }}">{{ __('New Household chores') }}</a>
           
           <a class="btn btn-primary" href="/user/admin">{{ __('Admin users') }}</a>
         </div>
@@ -62,7 +62,7 @@
 @else
 <div class="card">
   <div class="card-header">
-    {{ __('My Tasks Admin') }}
+    {{ __('My household chores') }}
   </div>
   <div class="row ml-2">
     <div class="col-md-6">

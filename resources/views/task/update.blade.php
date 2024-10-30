@@ -41,8 +41,12 @@
               <td><input type="text" class="form-control" name="description" id="description" value="{{ $task->description }}"></td>
             </tr>
             <tr>
-              <td>{{ __('Credit Value:') }}</td>
-              <td><input type="number" class="form-control" name="credit_for_task" id="credit_for_task" value="{{ $task->credit_for_task }}"></td>
+              <td>{{ __('Credit value:') }}</td>
+              @if( Auth::user()->hasRole('Admin'))
+                <td><input type="number" class="form-control" name="credit_for_task" id="credit_for_task" value="{{ $task->credit_for_task }}"></td>
+              @else
+                <td>{{ $task->credit_for_task }}</td>
+              @endif
             </tr>
             <tr>
               <td>{{ __('Expedition Date:') }}</td>
@@ -53,11 +57,11 @@
               <td>{{ Helpers::getHoursPassed($task->hours_passed, ['format' => 'full','locale'=>'en']) }}</td>
             </tr>
             <tr>
-              <td>{{ __('Status:') }}</td>
+              <td>{{ __('Current status:') }}</td>
               <td class="{{ $task->statu->style }}">{{ $task->statu->name }}</td>
             </tr>
               <tr>
-                  <td>Status</td>
+                  <td>{{ __('Status to change:') }}</td>
                   <td>
                       <select class="form-control" name="status" id="status">
                           @foreach ($status as $item)
