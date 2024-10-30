@@ -72,7 +72,7 @@
               </tr>
               @if( Auth::user()->hasRole('Admin'))
                 <tr>
-                  <td>{{ __('Select user') }}</td>
+                  <td>{{ __('Select Daughter:') }}</td>
                   <td>
                     <select class="form-control" name="nonAdminUsers" id="nonAdminUsers">
                         @foreach ($nonAdminUsers as $item)

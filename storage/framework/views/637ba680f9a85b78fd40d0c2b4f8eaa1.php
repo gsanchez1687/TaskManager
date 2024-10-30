@@ -73,7 +73,7 @@
               </tr>
               <?php if( Auth::user()->hasRole('Admin')): ?>
                 <tr>
-                  <td><?php echo e(__('Select user')); ?></td>
+                  <td><?php echo e(__('Select Daughter:')); ?></td>
                   <td>
                     <select class="form-control" name="nonAdminUsers" id="nonAdminUsers">
                         <?php $__currentLoopData = $nonAdminUsers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
