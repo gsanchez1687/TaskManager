@@ -19,6 +19,20 @@
     <div class="mb-3">
       <a href="<?php echo e(route('user.create')); ?>" class="btn btn-primary">Create User</a>
     </div>
+    <div>
+      <?php if(session('success')): ?>
+        <div class="alert alert-success">
+            <?php echo e(session('success')); ?>
+
+        </div>
+      <?php endif; ?>
+      <?php if(session('error')): ?>
+        <div class="alert alert-danger">
+            <?php echo e(session('error')); ?>
+
+        </div>
+      <?php endif; ?>
+    </div>
         <table class="table table-striped table-bordered">
           <thead>
               <th>ID</th>

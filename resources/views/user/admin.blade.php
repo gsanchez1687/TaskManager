@@ -20,6 +20,18 @@
     <div class="mb-3">
       <a href="{{ route('user.create') }}" class="btn btn-primary">Create User</a>
     </div>
+    <div>
+      @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+      @endif
+      @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+      @endif
+    </div>
         <table class="table table-striped table-bordered">
           <thead>
               <th>ID</th>
