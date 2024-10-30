@@ -44,6 +44,35 @@ class UserController extends Controller
         ]));
     }
 
+    public function create(){
+
+        $roles = Role::all();
+        return view('user.create',with([
+            'roles' => $roles
+        ]));
+    }
+
+    public function store(Request $request){
+
+        try {
+            $this->validate($request, [
+                'name' => 'required',
+                'email' => 'required',
+                'password' => 'required|min:8',
+                'roles' => 'required'
+            ]);
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = bcrypt($request->password);
+            $user->save();
+            $user->assignRole($request->roles);
+            return redirect()->route('admin')->with('success', 'User Created Successfully');
+        }catch (\Exception $th) {
+            return redirect()->route('admin')->with('error', 'User Creation Failed: '.$th->getMessage());
+        }
+    }
+
     public function changePassword(Request $request)
     {
        return view('user.changePassword');
@@ -73,7 +102,6 @@ class UserController extends Controller
 
         $user = User::findOrFail($id);
         $roles = Role::all();
-        //model_has_roles
         
         return view('user.update',with([
             'user' => $user,
@@ -93,6 +121,7 @@ class UserController extends Controller
                 'name' => $request->name,
                 'email' => $request->email
             ]);
+            $user->syncRoles($request->roles);
             if($request->password){
                 $user->update([
                     'password' => bcrypt($request->password)

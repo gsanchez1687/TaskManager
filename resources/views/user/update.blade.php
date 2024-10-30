@@ -40,6 +40,16 @@
                 <td>{{ __('Password:') }}</td>
                 <td><input type="password" class="form-control" name="password" id="password"></td>
             </tr>
+            <tr>
+                <td>{{ __('Roles:') }}</td>
+                <td>
+                  <select class="form-control" name="roles" id="roles">
+                    @foreach ($roles as $role)
+                      <option value="{{ $role->name }}" {{ $user->hasRole($role->name) ? 'selected' : '' }}>{{ $role->name }}</option>
+                    @endforeach
+                  </select>
+                </td>
+            </tr>
             </form>
           </table>
           <input type="hidden" name="id" value="{{ $user->id }}">

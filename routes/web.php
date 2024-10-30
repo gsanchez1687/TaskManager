@@ -59,9 +59,14 @@ Route::get('/user/admin', [UserController::class, 'admin'])->name('admin');
 //update user
 Route::get('/user/update/{id}', [UserController::class, 'update'])->name('update');
 
-
 //store user update
 Route::post('/user/updatestore', [UserController::class, 'updatestore'])->name('updatestore')->middleware('sanitize');
+
+//user create
+Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
+
+//store user
+Route::post('/user/store', [UserController::class, 'store'])->name('user.store')->middleware('sanitize');
 
 //auth google
 Route::get('/google-auth/redirect', function () {

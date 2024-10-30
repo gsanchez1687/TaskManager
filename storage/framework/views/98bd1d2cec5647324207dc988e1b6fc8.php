@@ -41,6 +41,16 @@
                 <td><?php echo e(__('Password:')); ?></td>
                 <td><input type="password" class="form-control" name="password" id="password"></td>
             </tr>
+            <tr>
+                <td><?php echo e(__('Roles:')); ?></td>
+                <td>
+                  <select class="form-control" name="roles" id="roles">
+                    <?php $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                      <option value="<?php echo e($role->name); ?>" <?php echo e($user->hasRole($role->name) ? 'selected' : ''); ?>><?php echo e($role->name); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                  </select>
+                </td>
+            </tr>
             </form>
           </table>
           <input type="hidden" name="id" value="<?php echo e($user->id); ?>">

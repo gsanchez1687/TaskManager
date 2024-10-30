@@ -14,8 +14,11 @@
     <?php echo e(__('Admin Users')); ?>
 
   </div>
-  
+
   <div class="card-body">
+    <div class="mb-3">
+      <a href="<?php echo e(route('user.create')); ?>" class="btn btn-primary">Create User</a>
+    </div>
         <table class="table table-striped table-bordered">
           <thead>
               <th>ID</th>
