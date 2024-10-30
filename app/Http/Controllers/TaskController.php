@@ -120,11 +120,11 @@ class TaskController extends Controller
             }
 
             DB::commit();
-            return redirect()->route('update', $id)->with('success', 'Task Updated Successfully');
+            return redirect()->route('task.update', $id)->with('success', 'Task Updated Successfully');
 
         } catch (\Exception $th) {
             DB::rollBack();
-            return redirect()->route('update', $id)->with('error', 'Task Update Failed: '.$th->getMessage());
+            return redirect()->route('task.update', $id)->with('error', 'Task Update Failed: '.$th->getMessage());
         }
 
     }
