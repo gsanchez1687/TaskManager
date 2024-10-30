@@ -6,6 +6,7 @@ use App\Models\TaskUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -58,6 +59,7 @@ class UserController extends Controller
     {
 
         try {
+            DB::beginTransaction();
             $this->validate($request, [
                 'name' => 'required|max:100',
                 'email' => 'required|email',
@@ -71,8 +73,10 @@ class UserController extends Controller
             $user->save();
             $user->assignRole($request->roles);
 
+            DB::commit();
             return redirect()->route('admin')->with('success', 'User Created Successfully');
         } catch (\Exception $th) {
+            DB::rollBack();
             return redirect()->route('admin')->with('error', 'User Creation Failed: '.$th->getMessage());
         }
     }
