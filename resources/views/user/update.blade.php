@@ -33,7 +33,7 @@
                 <td><input type="text" class="form-control" name="name" id="name" value="{{ $user->name }}"></td>
             </tr>
             <tr>
-                <td>{{ __('Email:') }}</td> 
+                <td>{{ __('Email:') }}</td>
                 <td><input type="text" class="form-control" name="email" id="email" value="{{ $user->email }}"></td>
             </tr>
             <tr>
