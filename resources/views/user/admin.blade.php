@@ -59,6 +59,7 @@
                     <td>{{ $item->updated_at }}</td>
                     <td>
                         <a href="{{ route('update', $item->id) }}" class="btn btn-primary btn-block" href="">Update</a>
+                        <a href="{{ route('transfer', $item->id) }}" class="btn btn-primary btn-block" href="">Tranfer credit</a>
                     </td>
                   </tr>
               @endforeach

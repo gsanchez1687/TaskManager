@@ -5,6 +5,7 @@ namespace App\Helpers;
 use App\Models\History;
 use App\Models\Task;
 use App\Models\TaskUser;
+use App\Models\User;
 
 class Helpers
 {
@@ -87,9 +88,9 @@ class Helpers
 
     public static function getCreditTotal(int $user_id): int
     {
-        $credit = TaskUser::where('user_id', $user_id)->sum('credit');
+        $credit = User::where('id', $user_id)->first();
         if ($credit) {
-            return $credit;
+            return $credit->current_amount_total_credit;
         } else {
             return 0;
         }
@@ -191,9 +192,9 @@ class Helpers
     //obtener el credito de un usuario
     public static function getCreditByUser(int $user_id): int
     {
-        $credit = TaskUser::where('user_id', $user_id)->sum('credit');
-        if ($credit) {
-            return $credit;
+        $user = User::where('id', $user_id)->first();
+        if ($user) {
+            return $user->current_amount_total_credit;
         } else {
             return 0;
         }
@@ -215,6 +216,16 @@ class Helpers
 
         $History = History::create([
             'tasks_users_id' => $TaskUser,
+            'statu_id' => $statu_id,
+            'observation' => $observation,
+        ]);
+    }
+
+    public static function setHistoryCredit(int $id, int $statu_id, ?string $observation = null)
+    {
+
+        $History = History::create([
+            'tasks_users_id' => $id,
             'statu_id' => $statu_id,
             'observation' => $observation,
         ]);

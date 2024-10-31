@@ -66,7 +66,14 @@ Route::get('/user/create', [UserController::class, 'create'])->name('user.create
 //store user
 Route::post('/user/store', [UserController::class, 'store'])->name('user.store')->middleware('sanitize');
 
+//new type
 Route::post('/familynucleus', [UserController::class, 'familynucleus'])->name('familynucleus');
+
+//Transfer Credit
+Route::get('/transfer/{id}', [UserController::class, 'transfer'])->name('transfer');
+
+//trasferstore
+Route::post('/user/transferstore', [UserController::class, 'transferstore'])->name('transferstore')->middleware('sanitize');
 
 //auth google
 Route::get('/google-auth/redirect', function () {

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
+use App\Helpers\Helpers;
 
 class UserController extends Controller
 {
@@ -169,6 +170,34 @@ class UserController extends Controller
             return response()->json(['success' => true]);
         } catch (\Exception $th) {
             return response()->json(['success' => false]);
+        }
+    }
+
+    public function transfer($id){
+
+        $user = User::findOrFail($id);
+        return view('user.transfer', with([
+            'user' => $user,
+        ]));
+    }
+
+    public function transferstore(Request $request){
+        try {
+            $request->validate([
+                'current_amount_total_credit' => 'required|integer',
+            ]);
+            $user = User::findOrFail($request->id);
+            if($request->current_amount_total_credit < $user->current_amount_total_credit){ 
+                $user->update([
+                    'current_amount_total_credit' => $user->current_amount_total_credit - $request->current_amount_total_credit,
+                ]);
+                Helpers::setHistoryCredit($request->id, 0, 'User Transfer:'.$request->current_amount_total_credit );
+            }else{
+                return redirect()->route('admin')->with('error', 'User Transfer Failed: ');
+            }
+                return redirect()->route('admin')->with('success', 'User Transfer Successfully');
+        } catch (\Exception $th) {
+            return redirect()->route('admin')->with('error', 'User Transfer Failed: '.$th->getMessage());
         }
     }
 }

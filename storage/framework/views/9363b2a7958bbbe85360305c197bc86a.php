@@ -60,6 +60,7 @@
                     <td><?php echo e($item->updated_at); ?></td>
                     <td>
                         <a href="<?php echo e(route('update', $item->id)); ?>" class="btn btn-primary btn-block" href="">Update</a>
+                        <a href="<?php echo e(route('transfer', $item->id)); ?>" class="btn btn-primary btn-block" href="">Tranfer credit</a>
                     </td>
                   </tr>
               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

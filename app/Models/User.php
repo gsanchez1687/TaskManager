@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'current_amount_total_credit',
         'type_id',
         'facebook_id',
         'google_id',

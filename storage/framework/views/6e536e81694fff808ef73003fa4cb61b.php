@@ -27,7 +27,7 @@
             </tr>
             <tr>
                 <td><?php echo e(__('Total Credit:')); ?></td>
-                <td><?php echo e($credit); ?></td>
+                <td><?php echo e($user->current_amount_total_credit); ?></td>
             </tr>
         </table>
     </div>

@@ -28,7 +28,7 @@
             </tr>
             <tr>
                 <td>{{ __('Total Credit:') }}</td>
-                <td>{{ $credit }}</td>
+                <td>{{ $user->current_amount_total_credit }}</td>
             </tr>
         </table>
     </div>
