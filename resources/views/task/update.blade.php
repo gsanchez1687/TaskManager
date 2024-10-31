@@ -74,6 +74,15 @@
                 </select>
               </td>
             </tr>
+            <tr>
+              <td>{{ __('Credit Paid:') }}</td>
+              <td>
+                <select class="form-control" name="credit_paid" id="credit_paid">
+                    <option {{ $task->credit_paid == 0 ? 'selected' : '' }} value="0">No Paid</option>
+                    <option {{ $task->credit_paid == 1 ? 'selected' : '' }} value="1">Yes Paid</option>
+                </select>
+              </td>
+            </tr>
           @endif
             <tr>
               <td>{{ __('Days Left:') }}</td>

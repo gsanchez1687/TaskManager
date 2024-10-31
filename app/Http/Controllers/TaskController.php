@@ -90,14 +90,16 @@ class TaskController extends Controller
                 'status' => 'required|in:1,2,3,4,5,6',
                 'credit_for_task'=> 'integer',
                 'nonAdminUsers' => 'integer',
+                'credit_paid' => 'in:0,1',
             ]);
-    
+
             //si encuentra la tarea la actualiza
             $task = Task::findOrFail($id);
             $task->title = $request->title;
             $task->description = $request->description;
             $task->statu_id = $request->status;
             $task->credit_for_task = isset($request->credit_for_task) ? $request->credit_for_task : $task->credit_for_task;
+            $task->credit_paid = isset($request->credit_paid) ? $request->credit_paid : $task->credit_paid;
             $task->expiration_date = $request->expiration_date;
             $task->save();
 

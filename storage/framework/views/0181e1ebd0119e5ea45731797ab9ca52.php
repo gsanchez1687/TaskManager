@@ -27,6 +27,7 @@
               <th>Title</th>
               <th>Description</th>
               <th>Credit Value</th>
+              <th>Credit Paid</th>
               <th>Expedition Date</th>
               <th>Status</th>
               <th>Days Passed</th>
@@ -40,10 +41,11 @@
                       <td><?php echo e($item->title); ?></td>
                       <td><?php echo e($item->description); ?></td>
                       <td><?php echo e($item->credit_for_task); ?></td>
+                      <td> <?php echo Helpers::getCreditPaid($item->credit_paid); ?></td>
                       <td><?php echo e($item->expiration_date); ?></td>
                       <td class="<?php echo e($item->statu->style); ?>"><?php echo e($item->statu->name); ?></td>
                       <td><?php echo e(Helpers::getHoursPassed($item->hours_passed, ['format' => 'full','locale'=>'en'])); ?></td>
-                      <td><?php echo e(Helpers::getAssignedTask($item->id)); ?></td>
+                      <td><?php echo Helpers::getAssignedTask($item->id); ?></td>
                       <td>
                           <a class="btn btn-primary btn-block" href="<?php echo e(route('view', $item->id)); ?>">Show</a>
                           <a class="btn btn-primary btn-block" href="<?php echo e(route('task.update', $item->id)); ?>">Update</a>

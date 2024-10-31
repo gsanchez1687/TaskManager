@@ -56,6 +56,7 @@ class Helpers
         };
     }
 
+    //metodo para obtener el nombre de la persona o sin asignar
     public static function getAssignedTask(int $task_id): string
     {
 
@@ -64,7 +65,7 @@ class Helpers
         if ($assigned) {
             return $assigned->user->name;
         } else {
-            return '--Unassigned--';
+            return '<span class="badge badge-warning">Unassigned</span>';
         }
 
     }
@@ -143,6 +144,17 @@ class Helpers
             return $credit;
         } else {
             return 0;
+        }
+    }
+
+    public static function getCreditPaid(int $credit_paid)
+    {
+        if (isset($credit_paid)) {
+            if($credit_paid > 0){
+                return '<span class="badge badge-success">Paid</span>';
+            }else{
+                return '<span class="badge badge-warning">Not Paid</span>';
+            }
         }
     }
 }

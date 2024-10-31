@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->integer('credit_for_task');
+            $table->tinyInteger('credit_paid')->default(0);
             $table->date('expiration_date');
             $table->integer('hours_passed')->default(0);
             $table->integer('statu_id')->constrained()->references('id')->on('status');

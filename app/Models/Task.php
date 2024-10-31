@@ -15,6 +15,7 @@ class Task extends Model
         'title',
         'description',
         'credit_for_task',
+        'credit_paid',
         'expiration_date',
         'hours_passed',
         'statu_id',

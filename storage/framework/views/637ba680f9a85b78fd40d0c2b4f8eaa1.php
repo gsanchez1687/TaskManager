@@ -75,6 +75,15 @@
                 </select>
               </td>
             </tr>
+            <tr>
+              <td><?php echo e(__('Credit Paid:')); ?></td>
+              <td>
+                <select class="form-control" name="credit_paid" id="credit_paid">
+                    <option <?php echo e($task->credit_paid == 0 ? 'selected' : ''); ?> value="0">No Paid</option>
+                    <option <?php echo e($task->credit_paid == 1 ? 'selected' : ''); ?> value="1">Yes Paid</option>
+                </select>
+              </td>
+            </tr>
           <?php endif; ?>
             <tr>
               <td><?php echo e(__('Days Left:')); ?></td>

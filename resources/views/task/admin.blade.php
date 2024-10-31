@@ -28,6 +28,7 @@
               <th>Title</th>
               <th>Description</th>
               <th>Credit Value</th>
+              <th>Credit Paid</th>
               <th>Expedition Date</th>
               <th>Status</th>
               <th>Days Passed</th>
@@ -41,10 +42,11 @@
                       <td>{{ $item->title }}</td>
                       <td>{{ $item->description }}</td>
                       <td>{{ $item->credit_for_task }}</td>
+                      <td> {!!  Helpers::getCreditPaid($item->credit_paid) !!}</td>
                       <td>{{ $item->expiration_date }}</td>
                       <td class="{{ $item->statu->style }}">{{ $item->statu->name }}</td>
                       <td>{{ Helpers::getHoursPassed($item->hours_passed, ['format' => 'full','locale'=>'en']) }}</td>
-                      <td>{{ Helpers::getAssignedTask($item->id) }}</td>
+                      <td>{!! Helpers::getAssignedTask($item->id) !!}</td>
                       <td>
                           <a class="btn btn-primary btn-block" href="{{ route('view', $item->id) }}">Show</a>
                           <a class="btn btn-primary btn-block" href="{{ route('task.update', $item->id) }}">Update</a>
