@@ -2,8 +2,8 @@
 
 namespace App\Helpers;
 
-use App\Models\TaskUser;
 use App\Models\Task;
+use App\Models\TaskUser;
 
 class Helpers
 {
@@ -78,7 +78,7 @@ class Helpers
 
         if ($assigned) {
             return $assigned->user->id;
-        }else {
+        } else {
             return 0;
         }
 
@@ -97,7 +97,7 @@ class Helpers
 
     public static function getCompletion(int $user_id): int
     {
-        $CompletedCount = TaskUser::where('user_id', $user_id)  
+        $CompletedCount = TaskUser::where('user_id', $user_id)
             ->join('tasks as t', 't.id', '=', 'tasks_users.task_id')
             ->join('status as s', 's.id', '=', 't.statu_id')
             ->where('s.id', 5)
@@ -201,9 +201,9 @@ class Helpers
     public static function getCreditPaid(int $credit_paid)
     {
         if (isset($credit_paid)) {
-            if($credit_paid > 0){
+            if ($credit_paid > 0) {
                 return '<span class="badge badge-success">Paid</span>';
-            }else{
+            } else {
                 return '<span class="badge badge-warning">Not Paid</span>';
             }
         }

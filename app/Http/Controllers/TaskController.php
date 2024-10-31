@@ -88,7 +88,7 @@ class TaskController extends Controller
                 'description' => 'required|max:255',
                 'expiration_date' => 'required|date',
                 'status' => 'required|in:1,2,3,4,5,6',
-                'credit_for_task'=> 'integer',
+                'credit_for_task' => 'integer',
                 'nonAdminUsers' => 'integer',
                 'credit_paid' => 'in:0,1',
             ]);
@@ -103,14 +103,14 @@ class TaskController extends Controller
             $task->expiration_date = $request->expiration_date;
             $task->save();
 
-            if($request->nonAdminUsers != 0){
+            if ($request->nonAdminUsers != 0) {
                 $TaskUser = TaskUser::where('task_id', $task->id)->where('user_id', $request->nonAdminUsers)->first();
-                if($TaskUser){
+                if ($TaskUser) {
                     $TaskUser->task_id = $task->id;
                     $TaskUser->user_id = $request->nonAdminUsers;
                     $TaskUser->credit = $request->credit_for_task;
                     $TaskUser->save();
-                }else{
+                } else {
                     $TaskUser = new TaskUser;
                     $TaskUser->task_id = $task->id;
                     $TaskUser->user_id = $request->nonAdminUsers;
@@ -123,36 +123,35 @@ class TaskController extends Controller
                         $TaskUser->credit = $TaskUser->credit + $task->credit_for_task;
                         $TaskUser->save();
                     }
-                }else{
-                    if($TaskUser->credit != 0){
+                } else {
+                    if ($TaskUser->credit != 0) {
                         $TaskUser->credit = $TaskUser->credit - $task->credit_for_task;
                         $TaskUser->save();
                     }
                 }
             }
 
-            if($request->nonAdminUsers == null){
+            if ($request->nonAdminUsers == null) {
                 $TaskUser = TaskUser::where('task_id', $task->id)->where('user_id', Auth::user()->id)->first();
                 if ($request->status == 5) {
                     if ($TaskUser->credit == 0) {
                         $TaskUser->credit = $TaskUser->credit + $task->credit_for_task;
                         $TaskUser->save();
                     }
-                }else{
-                    if($TaskUser->credit != 0){
+                } else {
+                    if ($TaskUser->credit != 0) {
                         $TaskUser->credit = $TaskUser->credit - $task->credit_for_task;
                         $TaskUser->save();
                     }
                 }
             }
 
-
             return redirect()->route('task.update', $id)->with('success', 'Task Updated Successfully');
         } catch (\Exception $th) {
             return redirect()->route('task.update', $id)->with('error', 'Task Update Failed: '.$th->getMessage());
         }
-        
-}
+
+    }
 
     public function store(Request $request)
     {
@@ -184,9 +183,10 @@ class TaskController extends Controller
         }
     }
 
-    public function sendemail(int $id, Request $request){
-    $data = TaskUser::with('user', 'task')->where('user_id', $request->nonAdminUsers)->where('task_id', $id)->first();
-        if($data){
+    public function sendemail(int $id, Request $request)
+    {
+        $data = TaskUser::with('user', 'task')->where('user_id', $request->nonAdminUsers)->where('task_id', $id)->first();
+        if ($data) {
             Mail::to($data->user->email)->send(new Notification($data));
         }
     }
