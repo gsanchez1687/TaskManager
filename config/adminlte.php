@@ -317,20 +317,38 @@ return [
         ],
         ['header' => 'account_settings'],
         [
-            'text' => ['Household Chores', 'name' => 'Tareas de casa'],
+            'text' => 'Household Chores',
             'url' => 'task/admin',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'My Profile',
-            'url' => 'user/profile',
+            'text' => 'User Son',
+            'url' => 'user/admin',
             'icon' => 'fas fa-fw fa-user',
+            'can' => ['admin task', 'Admin'],
         ],
         [
-            'text' => 'change_password',
-            'url' => 'user/changePassword',
-            'icon' => 'fas fa-fw fa-lock',
+            'text' => 'History Admin',
+            'url' => 'history/admin',
+            'icon' => 'fas fa-fw fa-history',
+            'can' => ['admin task', 'Admin'],
         ],
+        [
+            'text' => 'User',
+            'icon' => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'My Profile',
+                    'url' => 'user/profile',
+                    'icon' => 'fas fa-fw fa-user',
+                ],
+                [
+                    'text' => 'change_password',
+                    'url' => 'user/changePassword',
+                    'icon' => 'fas fa-fw fa-lock',
+                ],
+            ],
+        ]
     ],
 
     /*

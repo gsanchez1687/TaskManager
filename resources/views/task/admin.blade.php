@@ -39,7 +39,7 @@
           <a class="btn btn-primary" href="/user/admin">{{ __('User Son') }}</a>
         </div>
         <table id="tasks-table" class="table table-striped table-bordered">
-          <thead class="bg-info text-white">
+          <thead>
               <th>ID</th>
               <th>Title</th>
               <th>Description</th>
