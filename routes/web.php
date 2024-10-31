@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\HistoryController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -74,6 +75,10 @@ Route::get('/transfer/{id}', [UserController::class, 'transfer'])->name('transfe
 
 //trasferstore
 Route::post('/user/transferstore', [UserController::class, 'transferstore'])->name('transferstore')->middleware('sanitize');
+
+
+//History admin
+Route::get('/history/admin', [HistoryController::class, 'admin'])->name('history.admin');
 
 //auth google
 Route::get('/google-auth/redirect', function () {

@@ -16,4 +16,14 @@ class History extends Model
         'statu_id',
         'observation',
     ];
+
+    //relaciones
+
+    public function taskuser() {
+        return $this->belongsTo(TaskUser::class);
+    }
+
+    public function statu() {
+        return $this->belongsTo(Status::class);
+    }
 }

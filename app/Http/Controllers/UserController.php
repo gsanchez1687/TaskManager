@@ -191,7 +191,7 @@ class UserController extends Controller
                 $user->update([
                     'current_amount_total_credit' => $user->current_amount_total_credit - $request->current_amount_total_credit,
                 ]);
-                Helpers::setHistoryCredit($request->id, 0, 'User Transfer:'.$request->current_amount_total_credit );
+                Helpers::setHistoryCredit($request->id, 5, 'User Transfer:'.$request->current_amount_total_credit );
             }else{
                 return redirect()->route('admin')->with('error', 'User Transfer Failed: ');
             }
