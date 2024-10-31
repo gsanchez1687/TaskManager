@@ -31,6 +31,10 @@
               <td>{{ $task->credit_for_task }}</td>
             </tr>
             <tr>
+              <td>{{ __('Credit Paid:') }}</td>
+              <td>{!! Helpers::getCreditPaid($task->credit_paid) !!}</td>
+            </tr>
+            <tr>
               <td>{{ __('Expedition Date:') }}</td>
               <td>{{ $task->expiration_date }}</td>
             </tr>

@@ -77,21 +77,16 @@
             </tr>
             <tr>
               <td><?php echo e(__('Credit Paid:')); ?></td>
-              <td>
-                <select class="form-control" name="credit_paid" id="credit_paid">
-                    <option <?php echo e($task->credit_paid == 0 ? 'selected' : ''); ?> value="0">No Paid</option>
-                    <option <?php echo e($task->credit_paid == 1 ? 'selected' : ''); ?> value="1">Yes Paid</option>
-                </select>
-              </td>
+              <td><?php echo Helpers::getCreditPaid($task->credit_paid); ?></td>
             </tr>
           <?php endif; ?>
             <tr>
-              <td><?php echo e(__('Days Left:')); ?></td>
-              <td><?php echo e(Helpers::getHoursPassed($task->hours_passed, ['format' => 'full','locale'=>'en'])); ?></td>
-            </tr>
-            <tr>
               <td><?php echo e(__('Current status:')); ?></td>
               <td class="<?php echo e($task->statu->style); ?>"><?php echo e($task->statu->name); ?></td>
+            </tr>
+            <tr>
+              <td><?php echo e(__('Days Left:')); ?></td>
+              <td><?php echo e(Helpers::getHoursPassed($task->hours_passed, ['format' => 'full','locale'=>'en'])); ?></td>
             </tr>
             <tr>
                 <td>

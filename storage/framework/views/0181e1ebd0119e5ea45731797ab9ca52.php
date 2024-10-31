@@ -35,10 +35,10 @@
   <div class="card-body">
         <div class="mb-3">
           <a class="btn btn-primary" href="<?php echo e(route('create')); ?>"><?php echo e(__('New Household chores')); ?></a>
-          <a class="btn btn-primary" href="/user/admin"><?php echo e(__('My Daughter')); ?></a>
+          <a class="btn btn-primary" href="/user/admin"><?php echo e(__('User Son')); ?></a>
         </div>
-        <table class="table table-striped table-bordered">
-          <thead>
+        <table id="tasks-table" class="table table-striped table-bordered">
+          <thead class="bg-info text-white">
               <th>ID</th>
               <th>Title</th>
               <th>Description</th>
@@ -50,8 +50,8 @@
               <th>Assigned Task</th>
               <th>Actions</th>
           </thead>
-          <tbody></tbody>
-              <?php $__currentLoopData = $tasks; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+          <tbody>
+            <?php $__currentLoopData = $tasks; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <tr>
                       <td><?php echo e($item->id); ?></td>
                       <td><?php echo e($item->title); ?></td>
@@ -110,7 +110,7 @@
 
   </div>
   <div class="card-body">
-        <table class="table table-striped table-bordered">
+        <table id="tasks-table" class="table table-striped table-bordered">
           <thead>
               <th>ID</th>
               <th>Title</th>
@@ -146,6 +146,23 @@
   </div>
 </div>
 <?php endif; ?>
-
 <?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('css'); ?>
+  <link href="https://cdn.datatables.net/v/bs5/dt-2.1.8/datatables.min.css" rel="stylesheet">
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('js'); ?>
+  <script src="https://cdn.datatables.net/v/bs5/dt-2.1.8/datatables.min.js"></script>
+  <script>
+    
+    $(document).ready( function () {
+      $('#tasks-table').DataTable({
+         paging: false
+      });
+    } );
+  </script>
+<?php $__env->stopSection(); ?>
+
+
 <?php echo $__env->make('adminlte::page', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/MAMP/htdocs/TaskManager/resources/views/task/admin.blade.php ENDPATH**/ ?>

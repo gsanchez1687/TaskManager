@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
+use App\Models\Type;
 
 class UserController extends Controller
 {
@@ -18,9 +19,7 @@ class UserController extends Controller
 
     public function admin()
     {
-
         $users = User::orderBy('id', 'desc')->paginate(10);
-
         return view('user.admin', with([
             'users' => $users,
         ]));
@@ -115,10 +114,12 @@ class UserController extends Controller
 
         $user = User::findOrFail($id);
         $roles = Role::all();
+        $types = Type::all();
 
         return view('user.update', with([
             'user' => $user,
             'roles' => $roles,
+            'types' => $types
         ]));
     }
 
@@ -127,13 +128,16 @@ class UserController extends Controller
 
         try {
             $this->validate($request, [
-                'name' => 'required',
-                'email' => 'required',
+                'name' => 'required|max:100',
+                'email' => 'required|email|unique:users,email,'.$request->id,
+                'roles' => 'required',
+                'type' => 'required|exists:types,id',
             ]);
             $user = User::findOrFail($request->id);
             $user->update([
                 'name' => $request->name,
                 'email' => $request->email,
+                'type_id' => $request->type
             ]);
             $user->syncRoles($request->roles);
             if ($request->password) {
@@ -145,6 +149,22 @@ class UserController extends Controller
             return redirect()->route('admin')->with('success', 'User Updated Successfully');
         } catch (\Exception $th) {
             return redirect()->route('admin')->with('error', 'User Update Failed: '.$th->getMessage());
+        }
+    }
+
+    public function familynucleus(Request $request)
+    {
+        try {
+            $request->validate([
+                'name' => 'required|string|max:255',
+            ]);
+    
+            Type::create([
+                'name' => $request->name,
+            ]);
+            return response()->json(['success' => true]);
+        } catch (\Exception $th) {
+            return response()->json(['success' => false]);
         }
     }
 }

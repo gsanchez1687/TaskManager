@@ -76,21 +76,16 @@
             </tr>
             <tr>
               <td>{{ __('Credit Paid:') }}</td>
-              <td>
-                <select class="form-control" name="credit_paid" id="credit_paid">
-                    <option {{ $task->credit_paid == 0 ? 'selected' : '' }} value="0">No Paid</option>
-                    <option {{ $task->credit_paid == 1 ? 'selected' : '' }} value="1">Yes Paid</option>
-                </select>
-              </td>
+              <td>{!! Helpers::getCreditPaid($task->credit_paid) !!}</td>
             </tr>
           @endif
             <tr>
-              <td>{{ __('Days Left:') }}</td>
-              <td>{{ Helpers::getHoursPassed($task->hours_passed, ['format' => 'full','locale'=>'en']) }}</td>
-            </tr>
-            <tr>
               <td>{{ __('Current status:') }}</td>
               <td class="{{ $task->statu->style }}">{{ $task->statu->name }}</td>
+            </tr>
+            <tr>
+              <td>{{ __('Days Left:') }}</td>
+              <td>{{ Helpers::getHoursPassed($task->hours_passed, ['format' => 'full','locale'=>'en']) }}</td>
             </tr>
             <tr>
                 <td>

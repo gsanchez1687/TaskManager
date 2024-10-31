@@ -30,6 +30,10 @@
               <td><?php echo e($task->credit_for_task); ?></td>
             </tr>
             <tr>
+              <td><?php echo e(__('Credit Paid:')); ?></td>
+              <td><?php echo Helpers::getCreditPaid($task->credit_paid); ?></td>
+            </tr>
+            <tr>
               <td><?php echo e(__('Expedition Date:')); ?></td>
               <td><?php echo e($task->expiration_date); ?></td>
             </tr>

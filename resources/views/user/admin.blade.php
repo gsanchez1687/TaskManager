@@ -18,7 +18,7 @@
 
   <div class="card-body">
     <div class="mb-3">
-      <a href="{{ route('user.create') }}" class="btn btn-primary">{{ __('New Daughter') }}</a>
+      <a href="{{ route('user.create') }}" class="btn btn-primary">{{ __('New user son') }}</a>
     </div>
     <div>
       @if (session('success'))
@@ -32,11 +32,12 @@
         </div>
       @endif
     </div>
-        <table class="table table-striped table-bordered">
+        <table id="users-table" class="table table-striped table-bordered">
           <thead>
               <th>ID</th>
               <th>name</th>
               <th>email</th>
+              <th>Type</th>
               <th>Credits</th>
               <th>Google</th>
               <th>Rol</th>
@@ -44,12 +45,13 @@
               <th>Updated</th>
               <th>Actions</th>
           </thead>
-          <tbody></tbody>
-              @foreach ($users as $item)
+          <tbody>
+            @foreach ($users as $item)
                   <tr>
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->email }}</td>
+                    <td>{{ $item->type->name }}</td>
                     <td>{{ Helpers::getCreditByUser($item->id); }}</td>
                     <td>{{ $item->google_id ? 'Yes' : 'No' }}</td>
                     <td>{{ $item->getRoleNames()->implode(', ') }}</td>
@@ -68,4 +70,20 @@
   </div>
 </div>
 @endif
+@stop
+
+@section('css')
+  <link href="https://cdn.datatables.net/v/bs5/dt-2.1.8/datatables.min.css" rel="stylesheet">
+@stop
+
+@section('js')
+  <script src="https://cdn.datatables.net/v/bs5/dt-2.1.8/datatables.min.js"></script>
+  <script>
+    
+    $(document).ready( function () {
+      $('#users-table').DataTable({
+         paging: false
+      });
+    } );
+  </script>
 @stop

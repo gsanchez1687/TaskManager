@@ -22,6 +22,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'type_id',
+        'facebook_id',
         'google_id',
         'timezone',
     ];
@@ -51,4 +53,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(TaskUser::class);
     }
+
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
+
 }

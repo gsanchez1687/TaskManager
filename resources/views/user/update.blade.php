@@ -41,8 +41,18 @@
                 <td><input type="password" class="form-control" name="password" id="password"></td>
             </tr>
             <tr>
-                <td>{{ __('Credit:') }}</td>
-                <td><input type="number" class="form-control" name="credit" id="credit" value="{{ Helpers::getCreditByUser($user->id); }}"></td>
+              <td>{{ __('Type:') }}</td>
+              <td>
+                <select class="form-control" name="type" id="type">
+                  @foreach ($types as $type)
+                    <option value="{{ $type->id }}" {{ $user->type_id == $type->id ? 'selected' : '' }}>{{ $type->name }}</option>
+                  @endforeach
+                </select>
+                <a href="" data-toggle="modal" data-target="#familyNucleusModal">
+                   <p>New Type</p>
+                  <div id="mensaje"></div>
+                </a>
+              </td>
             </tr>
             <tr>
                 <td>{{ __('Roles:') }}</td>
@@ -61,5 +71,63 @@
           <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="familyNucleusModal" tabindex="-1" aria-labelledby="familyNucleusModal" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Family nucleus</h5>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+              <form id="familyNucleusForm">
+                @csrf
+                  <label for="name">Name:</label>
+                  <input type="text" name="name" id="name" class="form-control" required>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="saveChangesBtn">Save changes</button>
+          </div>
+      </div>
   </div>
+</div>
+
+@stop
+
+@section('js')
+    <script>
+        document.getElementById('saveChangesBtn').addEventListener('click', function() {
+        // Obtenemos el formulario y el valor del campo de nombre
+        const form = document.getElementById('familyNucleusForm');
+        const formData = new FormData(form);
+
+        // Enviamos el formulario con fetch
+        fetch('/familynucleus', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                $('#mensaje').text('Type saved successfully!');
+                location.reload();
+                // Cerrar el modal y limpiar el formulario si es necesario
+                $('#familyNucleusModal').modal('hide');
+                form.reset();
+            } else {
+              $('#mensaje').text('There was an error saving the Type.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+    </script>
 @stop

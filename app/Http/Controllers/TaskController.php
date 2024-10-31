@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Spatie\Permission\Models\Role;
+use App\Helpers\Helpers;
 
 class TaskController extends Controller
 {
@@ -90,7 +91,6 @@ class TaskController extends Controller
                 'status' => 'required|in:1,2,3,4,5,6',
                 'credit_for_task' => 'integer',
                 'nonAdminUsers' => 'integer',
-                'credit_paid' => 'in:0,1',
             ]);
 
             //si encuentra la tarea la actualiza
@@ -99,7 +99,6 @@ class TaskController extends Controller
             $task->description = $request->description;
             $task->statu_id = $request->status;
             $task->credit_for_task = isset($request->credit_for_task) ? $request->credit_for_task : $task->credit_for_task;
-            $task->credit_paid = isset($request->credit_paid) ? $request->credit_paid : $task->credit_paid;
             $task->expiration_date = $request->expiration_date;
             $task->save();
 
@@ -110,6 +109,7 @@ class TaskController extends Controller
                     $TaskUser->user_id = $request->nonAdminUsers;
                     $TaskUser->credit = $request->credit_for_task;
                     $TaskUser->save();
+                    Helpers::setHistory($TaskUser->id, $request->status, 'The task has been updated to '.$TaskUser->user->name);
                 } else {
                     $TaskUser = new TaskUser;
                     $TaskUser->task_id = $task->id;
@@ -117,12 +117,17 @@ class TaskController extends Controller
                     $TaskUser->credit = $request->credit_for_task;
                     $TaskUser->save();
                     $this->sendemail($task->id, $request);
+                    Helpers::setHistory($TaskUser->id, $request->status, 'Household task has been assigned to '.$TaskUser->user->name);
                 }
+
                 if ($request->status == 5) {
                     if ($TaskUser->credit == 0) {
                         $TaskUser->credit = $TaskUser->credit + $task->credit_for_task;
                         $TaskUser->save();
+                        Helpers::setHistory($TaskUser->id, $request->status, "Household completed ".$TaskUser->user->name);
                     }
+                    $task->credit_paid = 1;
+                    $task->save();
                 } else {
                     if ($TaskUser->credit != 0) {
                         $TaskUser->credit = $TaskUser->credit - $task->credit_for_task;
@@ -137,13 +142,16 @@ class TaskController extends Controller
                     if ($TaskUser->credit == 0) {
                         $TaskUser->credit = $TaskUser->credit + $task->credit_for_task;
                         $TaskUser->save();
+                        Helpers::setHistory($TaskUser->id, $request->status, "  Household completed ".$TaskUser->user->name);
                     }
                 } else {
                     if ($TaskUser->credit != 0) {
                         $TaskUser->credit = $TaskUser->credit - $task->credit_for_task;
                         $TaskUser->save();
+                        Helpers::setHistory($TaskUser->id, $request->status, "  Household status change 2".$TaskUser->user->name);
                     }
                 }
+                Helpers::setHistory($TaskUser, $request->status, 'Assigned credit');
             }
 
             return redirect()->route('task.update', $id)->with('success', 'Task Updated Successfully');

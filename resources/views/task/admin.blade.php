@@ -36,10 +36,10 @@
   <div class="card-body">
         <div class="mb-3">
           <a class="btn btn-primary" href="{{ route('create') }}">{{ __('New Household chores') }}</a>
-          <a class="btn btn-primary" href="/user/admin">{{ __('My Daughter') }}</a>
+          <a class="btn btn-primary" href="/user/admin">{{ __('User Son') }}</a>
         </div>
-        <table class="table table-striped table-bordered">
-          <thead>
+        <table id="tasks-table" class="table table-striped table-bordered">
+          <thead class="bg-info text-white">
               <th>ID</th>
               <th>Title</th>
               <th>Description</th>
@@ -51,8 +51,8 @@
               <th>Assigned Task</th>
               <th>Actions</th>
           </thead>
-          <tbody></tbody>
-              @foreach ($tasks as $item)
+          <tbody>
+            @foreach ($tasks as $item)
                   <tr>
                       <td>{{ $item->id }}</td>
                       <td>{{ $item->title }}</td>
@@ -109,7 +109,7 @@
 
   </div>
   <div class="card-body">
-        <table class="table table-striped table-bordered">
+        <table id="tasks-table" class="table table-striped table-bordered">
           <thead>
               <th>ID</th>
               <th>Title</th>
@@ -144,5 +144,21 @@
   </div>
 </div>
 @endif
-
 @stop
+
+@section('css')
+  <link href="https://cdn.datatables.net/v/bs5/dt-2.1.8/datatables.min.css" rel="stylesheet">
+@stop
+
+@section('js')
+  <script src="https://cdn.datatables.net/v/bs5/dt-2.1.8/datatables.min.js"></script>
+  <script>
+    
+    $(document).ready( function () {
+      $('#tasks-table').DataTable({
+         paging: false
+      });
+    } );
+  </script>
+@stop
+

@@ -42,8 +42,18 @@
                 <td><input type="password" class="form-control" name="password" id="password"></td>
             </tr>
             <tr>
-                <td><?php echo e(__('Credit:')); ?></td>
-                <td><input type="number" class="form-control" name="credit" id="credit" value="<?php echo e(Helpers::getCreditByUser($user->id)); ?>"></td>
+              <td><?php echo e(__('Type:')); ?></td>
+              <td>
+                <select class="form-control" name="type" id="type">
+                  <?php $__currentLoopData = $types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($type->id); ?>" <?php echo e($user->type_id == $type->id ? 'selected' : ''); ?>><?php echo e($type->name); ?></option>
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </select>
+                <a href="" data-toggle="modal" data-target="#familyNucleusModal">
+                   <p>New Type</p>
+                  <div id="mensaje"></div>
+                </a>
+              </td>
             </tr>
             <tr>
                 <td><?php echo e(__('Roles:')); ?></td>
@@ -62,6 +72,64 @@
           <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="familyNucleusModal" tabindex="-1" aria-labelledby="familyNucleusModal" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Family nucleus</h5>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+              <form id="familyNucleusForm">
+                <?php echo csrf_field(); ?>
+                  <label for="name">Name:</label>
+                  <input type="text" name="name" id="name" class="form-control" required>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="saveChangesBtn">Save changes</button>
+          </div>
+      </div>
   </div>
+</div>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('js'); ?>
+    <script>
+        document.getElementById('saveChangesBtn').addEventListener('click', function() {
+        // Obtenemos el formulario y el valor del campo de nombre
+        const form = document.getElementById('familyNucleusForm');
+        const formData = new FormData(form);
+
+        // Enviamos el formulario con fetch
+        fetch('/familynucleus', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                $('#mensaje').text('Type saved successfully!');
+                location.reload();
+                // Cerrar el modal y limpiar el formulario si es necesario
+                $('#familyNucleusModal').modal('hide');
+                form.reset();
+            } else {
+              $('#mensaje').text('There was an error saving the Type.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+    </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('adminlte::page', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/MAMP/htdocs/TaskManager/resources/views/user/update.blade.php ENDPATH**/ ?>

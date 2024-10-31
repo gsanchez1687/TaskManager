@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Models\History;
 use App\Models\Task;
 use App\Models\TaskUser;
 
@@ -207,5 +208,14 @@ class Helpers
                 return '<span class="badge badge-warning">Not Paid</span>';
             }
         }
+    }
+
+    public static function setHistory(int $TaskUser, int $statu_id, string $observation = null){
+
+       $History = History::create([
+           'tasks_users_id' => $TaskUser,
+           'statu_id' => $statu_id,
+           'observation' => $observation
+       ]);
     }
 }

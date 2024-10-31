@@ -89,8 +89,8 @@ return [
             'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
             'alt' => 'Auth Logo',
             'class' => '',
-            'width' => 50,
-            'height' => 50,
+            'width' => 100,
+            'height' => 100,
         ],
     ],
 
@@ -317,7 +317,7 @@ return [
         ],
         ['header' => 'account_settings'],
         [
-            'text' => 'Household Chores',
+            'text' => ['Household Chores','name'=>'Tareas de casa'],
             'url' => 'task/admin',
             'icon' => 'fas fa-fw fa-user',
         ],
@@ -369,11 +369,11 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
                 ],
                 [
