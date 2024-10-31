@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Models\TaskUser;
+use App\Models\Task;
 
 class Helpers
 {
@@ -96,8 +97,21 @@ class Helpers
 
     public static function getCompletion(int $user_id): int
     {
-        $CompletedCount = TaskUser::where('user_id', $user_id)
+        $CompletedCount = TaskUser::where('user_id', $user_id)  
             ->join('tasks as t', 't.id', '=', 'tasks_users.task_id')
+            ->join('status as s', 's.id', '=', 't.statu_id')
+            ->where('s.id', 5)
+            ->count();
+        if ($CompletedCount) {
+            return $CompletedCount;
+        } else {
+            return 0;
+        }
+    }
+
+    public static function getCompletionAll(): int
+    {
+        $CompletedCount = TaskUser::join('tasks as t', 't.id', '=', 'tasks_users.task_id')
             ->join('status as s', 's.id', '=', 't.statu_id')
             ->where('s.id', 5)
             ->count();
@@ -122,15 +136,52 @@ class Helpers
         }
     }
 
+    public static function getPendingAll(): int
+    {
+        $PendingCount = TaskUser::join('tasks as t', 't.id', '=', 'tasks_users.task_id')
+            ->join('status as s', 's.id', '=', 't.statu_id')
+            ->where('s.id', 3)
+            ->count();
+        if ($PendingCount) {
+            return $PendingCount;
+        } else {
+            return 0;
+        }
+    }
+
     public static function getActive(int $user_id): int
     {
-        $PendingCount = TaskUser::where('user_id', $user_id)
+        $ActiveCount = TaskUser::where('user_id', $user_id)
             ->join('tasks as t', 't.id', '=', 'tasks_users.task_id')
             ->join('status as s', 's.id', '=', 't.statu_id')
             ->where('s.id', 1)
             ->count();
-        if ($PendingCount) {
-            return $PendingCount;
+        if ($ActiveCount) {
+            return $ActiveCount;
+        } else {
+            return 0;
+        }
+    }
+
+    public static function getActiveAll(): int
+    {
+        $ActiveCount = TaskUser::join('tasks as t', 't.id', '=', 'tasks_users.task_id')
+            ->join('status as s', 's.id', '=', 't.statu_id')
+            ->where('s.id', 1)
+            ->count();
+        if ($ActiveCount) {
+            return $ActiveCount;
+        } else {
+            return 0;
+        }
+    }
+
+    public static function getCreditPayAll(int $value): int
+    {
+        $CreditCount = Task::where('credit_paid', $value)
+            ->count();
+        if ($CreditCount) {
+            return $CreditCount;
         } else {
             return 0;
         }

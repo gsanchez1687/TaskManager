@@ -15,11 +15,27 @@
   <div class="card-header">
     {{ __('My household chores') }}
   </div>
-  
+
+  <div class="row ml-2">
+    <div class="col-md-12 ">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ __('Statistics') }}</h5>
+          <p class="card-text">
+            <span class="badge badge-primary">Active: {{ Helpers::getActiveAll() }} </span>
+            <span class="badge badge-warning">Pending: {{ Helpers::getPendingAll() }} </span>
+            <span class="badge badge-success">Completed:{{ Helpers::getCompletionAll() }} </span>
+            <span class="badge badge-success">Credit Paid: {{ Helpers::getCreditPayAll(1) }}</span>
+            <span class="badge badge-warning">Credit No Paid: {{ Helpers::getCreditPayAll(0) }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="card-body">
         <div class="mb-3">
           <a class="btn btn-primary" href="{{ route('create') }}">{{ __('New Household chores') }}</a>
-          
           <a class="btn btn-primary" href="/user/admin">{{ __('My Daughter') }}</a>
         </div>
         <table class="table table-striped table-bordered">

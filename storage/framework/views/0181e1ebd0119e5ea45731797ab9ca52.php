@@ -14,11 +14,27 @@
     <?php echo e(__('My household chores')); ?>
 
   </div>
-  
+
+  <div class="row ml-2">
+    <div class="col-md-12 ">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><?php echo e(__('Statistics')); ?></h5>
+          <p class="card-text">
+            <span class="badge badge-primary">Active: <?php echo e(Helpers::getActiveAll()); ?> </span>
+            <span class="badge badge-warning">Pending: <?php echo e(Helpers::getPendingAll()); ?> </span>
+            <span class="badge badge-success">Completed:<?php echo e(Helpers::getCompletionAll()); ?> </span>
+            <span class="badge badge-success">Credit Paid: <?php echo e(Helpers::getCreditPayAll(1)); ?></span>
+            <span class="badge badge-warning">Credit No Paid: <?php echo e(Helpers::getCreditPayAll(0)); ?></span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="card-body">
         <div class="mb-3">
           <a class="btn btn-primary" href="<?php echo e(route('create')); ?>"><?php echo e(__('New Household chores')); ?></a>
-          
           <a class="btn btn-primary" href="/user/admin"><?php echo e(__('My Daughter')); ?></a>
         </div>
         <table class="table table-striped table-bordered">
