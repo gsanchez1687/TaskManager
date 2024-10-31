@@ -59,13 +59,25 @@ class Helpers
     public static function getAssignedTask(int $task_id): string
     {
 
-        $assigned = TaskUser::where('task_id', $task_id)
-            ->first();
+        $assigned = TaskUser::where('task_id', $task_id)->first();
 
         if ($assigned) {
             return $assigned->user->name;
         } else {
             return '--Unassigned--';
+        }
+
+    }
+
+    public static function getAssignedTaskById(int $task_id): string
+    {
+
+        $assigned = TaskUser::where('task_id', $task_id)->first();
+
+        if ($assigned) {
+            return $assigned->user->id;
+        }else {
+            return 0;
         }
 
     }

@@ -37,7 +37,7 @@ Route::get('/task/view/{id}', [TaskController::class, 'show'])->name('view');
 Route::get('/task/update/{id}', [TaskController::class, 'update'])->name('task.update');
 
 //edit task
-Route::post('/task/updateStatus/{id}', [TaskController::class, 'updateStatus'])->name('updateStatus');
+Route::post('/task/updateStore/{id}', [TaskController::class, 'updateStore'])->name('updateStore');
 
 //store task
 Route::post('/task/store', [TaskController::class, 'store'])->name('store')->middleware('sanitize');

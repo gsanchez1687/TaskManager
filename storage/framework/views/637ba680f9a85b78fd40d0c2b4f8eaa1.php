@@ -27,7 +27,7 @@
     </div>
     <div class="card-body">
           <table class="table">
-            <form action="<?php echo e(route('updateStatus', $task->id)); ?>" method="POST">
+            <form action="<?php echo e(route('updateStore', $task->id)); ?>" method="POST">
             <?php echo csrf_field(); ?>
             <tr>
               <td>ID</td>
@@ -70,7 +70,7 @@
                 <select class="form-control" name="nonAdminUsers" id="nonAdminUsers">
                     <option value="0">Select daughter...</option>
                     <?php $__currentLoopData = $nonAdminUsers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <option value="<?php echo e($item->id); ?>"><?php echo e($item->name); ?></option>
+                        <option <?php echo e(Helpers::getAssignedTaskById($task->id) == $item->id ? 'selected' : ''); ?> value="<?php echo e($item->id); ?>"><?php echo e($item->name); ?></option>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
               </td>

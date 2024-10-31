@@ -26,7 +26,7 @@
     </div>
     <div class="card-body">
           <table class="table">
-            <form action="{{ route('updateStatus', $task->id) }}" method="POST">
+            <form action="{{ route('updateStore', $task->id) }}" method="POST">
             @csrf
             <tr>
               <td>ID</td>
@@ -69,7 +69,7 @@
                 <select class="form-control" name="nonAdminUsers" id="nonAdminUsers">
                     <option value="0">Select daughter...</option>
                     @foreach ($nonAdminUsers as $item)
-                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        <option {{ Helpers::getAssignedTaskById($task->id) == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
                     @endforeach
                 </select>
               </td>

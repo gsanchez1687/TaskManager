@@ -79,67 +79,60 @@ class TaskController extends Controller
         ]));
     }
 
-    public function updateStatus(Request $request, $id)
+    public function updateStore(Request $request, $id)
     {
 
         try {
-            DB::beginTransaction();
-
             $this->validate($request, [
-                'title' => 'required|min:5',
-                'description' => 'required|min:5',
-                'credit_for_task' => 'numeric',
+                'title' => 'required|max:100',
+                'description' => 'required|max:255',
                 'expiration_date' => 'required|date',
-                'status' => 'required',
+                'status' => 'required|in:1,2,3,4,5,6',
+                'credit_for_task'=> 'required|integer',
+                'nonAdminUsers' => 'integer',
             ]);
-            $user = auth()->user();
-            $TaskUser = TaskUser::where('user_id', $user->id)
-            ->where('task_id', $id)
-            ->first();
+    
+            //si encuentra la tarea la actualiza
             $task = Task::findOrFail($id);
             $task->title = $request->title;
             $task->description = $request->description;
-            $task->credit_for_task = $request->credit_for_task ? $request->credit_for_task : $task->credit_for_task;
-            $task->expiration_date = $request->expiration_date;
             $task->statu_id = $request->status;
+            $task->credit_for_task = $request->credit_for_task;
+            $task->expiration_date = $request->expiration_date;
             $task->save();
 
-            if ($request->status == 5) {
-                if ($TaskUser && $TaskUser->credit == 0) {
-                    $TaskUser->credit = $TaskUser->credit + $task->credit_for_task;
+            if($request->nonAdminUsers != 0){
+                $TaskUser = TaskUser::where('task_id', $task->id)->where('user_id', $request->nonAdminUsers)->first();
+                if($TaskUser){
+                    $TaskUser->task_id = $task->id;
+                    $TaskUser->user_id = $request->nonAdminUsers;
+                    $TaskUser->credit = $request->credit_for_task;
+                    $TaskUser->save();
+                }else{
+                    $TaskUser = new TaskUser;
+                    $TaskUser->task_id = $task->id;
+                    $TaskUser->user_id = $request->nonAdminUsers;
+                    $TaskUser->credit = $request->credit_for_task;
+                    $TaskUser->save();
+                }
+                if ($request->status == 5) {
+                    if ($TaskUser->credit == 0) {
+                        $TaskUser->credit = $TaskUser->credit + $task->credit_for_task;
+                        $TaskUser->save();
+                    }
+                }else{
+                    $TaskUser->credit = $TaskUser->credit - $task->credit_for_task;
                     $TaskUser->save();
                 }
             }
-            if($request->status != 5 && $TaskUser->credit != 0){
-                $TaskUser->credit =  $TaskUser->credit - $task->credit_for_task;
-                $TaskUser->save();
-            }
 
-            if ($request->nonAdminUsers != 0) {
-                TaskUser::create([
-                    'task_id' => $id,
-                    'user_id' => $request->nonAdminUsers,
-                    'credit' => 0,
-                ]);
-                //enviar correo de notificacion
-                $data = TaskUser::with('user', 'task')
-                    ->where('user_id', $request->nonAdminUsers)
-                    ->where('task_id', $id)
-                    ->first();
-                Mail::to($data->user->email)->send(new Notification($data));
-            }
-
-            DB::commit();
 
             return redirect()->route('task.update', $id)->with('success', 'Task Updated Successfully');
-
         } catch (\Exception $th) {
-            DB::rollBack();
-
             return redirect()->route('task.update', $id)->with('error', 'Task Update Failed: '.$th->getMessage());
         }
-
-    }
+        
+}
 
     public function store(Request $request)
     {
