@@ -66,7 +66,6 @@ Route::get('/user/create', [UserController::class, 'create'])->name('user.create
 //store user
 Route::post('/user/store', [UserController::class, 'store'])->name('user.store')->middleware('sanitize');
 
-
 Route::post('/familynucleus', [UserController::class, 'familynucleus'])->name('familynucleus');
 
 //auth google

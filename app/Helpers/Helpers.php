@@ -210,12 +210,13 @@ class Helpers
         }
     }
 
-    public static function setHistory(int $TaskUser, int $statu_id, string $observation = null){
+    public static function setHistory(int $TaskUser, int $statu_id, ?string $observation = null)
+    {
 
-       $History = History::create([
-           'tasks_users_id' => $TaskUser,
-           'statu_id' => $statu_id,
-           'observation' => $observation
-       ]);
+        $History = History::create([
+            'tasks_users_id' => $TaskUser,
+            'statu_id' => $statu_id,
+            'observation' => $observation,
+        ]);
     }
 }

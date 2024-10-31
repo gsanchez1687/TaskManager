@@ -317,7 +317,7 @@ return [
         ],
         ['header' => 'account_settings'],
         [
-            'text' => ['Household Chores','name'=>'Tareas de casa'],
+            'text' => ['Household Chores', 'name' => 'Tareas de casa'],
             'url' => 'task/admin',
             'icon' => 'fas fa-fw fa-user',
         ],

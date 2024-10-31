@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helpers;
 use App\Mail\Notification;
 use App\Models\Status;
 use App\Models\Task;
@@ -12,7 +13,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Spatie\Permission\Models\Role;
-use App\Helpers\Helpers;
 
 class TaskController extends Controller
 {
@@ -124,7 +124,7 @@ class TaskController extends Controller
                     if ($TaskUser->credit == 0) {
                         $TaskUser->credit = $TaskUser->credit + $task->credit_for_task;
                         $TaskUser->save();
-                        Helpers::setHistory($TaskUser->id, $request->status, "Household completed ".$TaskUser->user->name);
+                        Helpers::setHistory($TaskUser->id, $request->status, 'Household completed '.$TaskUser->user->name);
                     }
                     $task->credit_paid = 1;
                     $task->save();
@@ -142,13 +142,13 @@ class TaskController extends Controller
                     if ($TaskUser->credit == 0) {
                         $TaskUser->credit = $TaskUser->credit + $task->credit_for_task;
                         $TaskUser->save();
-                        Helpers::setHistory($TaskUser->id, $request->status, "  Household completed ".$TaskUser->user->name);
+                        Helpers::setHistory($TaskUser->id, $request->status, '  Household completed '.$TaskUser->user->name);
                     }
                 } else {
                     if ($TaskUser->credit != 0) {
                         $TaskUser->credit = $TaskUser->credit - $task->credit_for_task;
                         $TaskUser->save();
-                        Helpers::setHistory($TaskUser->id, $request->status, "  Household status change 2".$TaskUser->user->name);
+                        Helpers::setHistory($TaskUser->id, $request->status, '  Household status change 2'.$TaskUser->user->name);
                     }
                 }
                 Helpers::setHistory($TaskUser, $request->status, 'Assigned credit');

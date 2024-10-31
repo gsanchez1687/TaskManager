@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\TaskUser;
+use App\Models\Type;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
-use App\Models\Type;
 
 class UserController extends Controller
 {
@@ -20,6 +20,7 @@ class UserController extends Controller
     public function admin()
     {
         $users = User::orderBy('id', 'desc')->paginate(10);
+
         return view('user.admin', with([
             'users' => $users,
         ]));
@@ -119,7 +120,7 @@ class UserController extends Controller
         return view('user.update', with([
             'user' => $user,
             'roles' => $roles,
-            'types' => $types
+            'types' => $types,
         ]));
     }
 
@@ -137,7 +138,7 @@ class UserController extends Controller
             $user->update([
                 'name' => $request->name,
                 'email' => $request->email,
-                'type_id' => $request->type
+                'type_id' => $request->type,
             ]);
             $user->syncRoles($request->roles);
             if ($request->password) {
@@ -158,10 +159,11 @@ class UserController extends Controller
             $request->validate([
                 'name' => 'required|string|max:255',
             ]);
-    
+
             Type::create([
                 'name' => $request->name,
             ]);
+
             return response()->json(['success' => true]);
         } catch (\Exception $th) {
             return response()->json(['success' => false]);
