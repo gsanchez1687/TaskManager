@@ -25,8 +25,8 @@ class SeederUsers extends Seeder
             ['name' => 'Luis', 'email' => 'jVJ2Y@example.com', 'password' => bcrypt('12345678')],
             ['name' => 'Daniel', 'email' => 'jVJ2G@example.com', 'password' => bcrypt('12345678')],
             ['name' => 'Cristian', 'email' => 'jVJ2D@example.com', 'password' => bcrypt('12345678')],
-            ['name' => 'Daniel', 'email' => 'jVJ2C@example.com', 'password' => bcrypt('12345678')],
-            ['name' => 'Cristian', 'email' => 'jVJ2B@example.com', 'password' => bcrypt('12345678')],
+            ['name' => 'Ricardo', 'email' => 'jVJ2C@example.com', 'password' => bcrypt('12345678')],
+            ['name' => 'Jose', 'email' => 'jVJ2B@example.com', 'password' => bcrypt('12345678')],
         ];
 
         $aliadoRole = Role::where('name', 'Daughter')->first();
