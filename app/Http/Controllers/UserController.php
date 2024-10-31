@@ -49,15 +49,16 @@ class UserController extends Controller
     {
 
         $roles = Role::all();
+        $types = Type::all();
 
         return view('user.create', with([
             'roles' => $roles,
+            'types' => $types,
         ]));
     }
 
     public function store(Request $request)
     {
-
         try {
             DB::beginTransaction();
             $this->validate($request, [
@@ -65,11 +66,13 @@ class UserController extends Controller
                 'email' => 'required|email',
                 'password' => 'required|min:8|max:16',
                 'roles' => 'required',
+                'type' => 'required|exists:types,id',
             ]);
             $user = new User;
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = bcrypt($request->password);
+            $user->type_id = $request->type;
             $user->save();
             $user->assignRole($request->roles);
 
@@ -78,7 +81,6 @@ class UserController extends Controller
             return redirect()->route('admin')->with('success', 'User Created Successfully');
         } catch (\Exception $th) {
             DB::rollBack();
-
             return redirect()->route('admin')->with('error', 'User Creation Failed: '.$th->getMessage());
         }
     }

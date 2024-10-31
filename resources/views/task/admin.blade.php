@@ -36,7 +36,6 @@
   <div class="card-body">
         <div class="mb-3">
           <a class="btn btn-primary" href="{{ route('create') }}">{{ __('New Household chores') }}</a>
-          <a class="btn btn-primary" href="/user/admin">{{ __('User Son') }}</a>
         </div>
         <table id="tasks-table" class="table table-striped table-bordered">
           <thead>

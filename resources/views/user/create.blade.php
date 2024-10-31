@@ -48,6 +48,17 @@
         </div>
 
         <div class="form-group row">
+          <label for="type" class="col-sm-2 col-form-label">{{ __('Type') }}</label>
+          <div class="col-sm-10">
+            <select class="form-control" name="type" id="type">
+              @foreach ($types as $type)
+                <option value="{{ $type->id }}">{{ $type->name }}</option>
+              @endforeach
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group row">
             <label for="roles" class="col-sm-2 col-form-label">{{ __('roles') }}</label>
             <div class="col-sm-10">
               <select class="form-control" name="roles" id="roles">

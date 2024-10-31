@@ -35,7 +35,6 @@
   <div class="card-body">
         <div class="mb-3">
           <a class="btn btn-primary" href="<?php echo e(route('create')); ?>"><?php echo e(__('New Household chores')); ?></a>
-          <a class="btn btn-primary" href="/user/admin"><?php echo e(__('User Son')); ?></a>
         </div>
         <table id="tasks-table" class="table table-striped table-bordered">
           <thead>

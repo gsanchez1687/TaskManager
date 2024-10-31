@@ -29,7 +29,7 @@ class SeederUsers extends Seeder
             ['name' => 'Benjamin', 'email' => 'jVJ2B@example.com', 'password' => bcrypt('12345678'), 'type_id' => 2],
         ];
 
-        $aliadoRole = Role::where('name', 'son user')->first();
+        $aliadoRole = Role::where('name', 'User')->first();
         foreach ($users as $key => $value) {
             $user = User::create($value);
             $user->assignRole($aliadoRole);

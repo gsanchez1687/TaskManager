@@ -16,7 +16,7 @@ class SeederRoles extends Seeder
 
         //se crea estos 2 usuarios por defecto
         $role = Role::create(['name' => 'Admin']);
-        Role::create(['name' => 'son user']);
+        Role::create(['name' => 'User']);
 
         //se crea un permiso para poder crear tareas
         $permission = Permission::create(['name' => 'admin task']);
