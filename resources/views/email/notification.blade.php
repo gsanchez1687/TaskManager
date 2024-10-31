@@ -67,7 +67,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Notification new task</h1>
+            <h1>Notification assigned Household chores</h1>
             <p>{{ date('Y-m-d H:i:s') }}</p>
         </div>
         <div class="content">
@@ -75,21 +75,37 @@
                 
             </div>
             <div class="message">
-                <div class="card" style="width: 18rem;">
+                <div class="card" style="width: 100%">
                     <div class="card-header">
-                        Notification new task
+                        <h2>You've been assigned a new household chores</h2>
                     </div>
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item">Title : {{ $data->task->title }}</li>
-                      <li class="list-group-item">Description: {{ $data->task->description }}</li>
-                      <li class="list-group-item">Credit:  {{ $data->task->credit_for_task }}</li>
-                      <li class="list-group-item">Expiration Date: {{ $data->task->expiration_date }}</li>
-                    </ul>
+                    <table style="width: 100%">
+                        <tr>
+                            <td>{{ __('Title:') }}</td>
+                            <td>{{ $data->task->title }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ __('Description:') }}</td>
+                            <td>{{ $data->task->description }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ __('Expedition Date:') }}</td>
+                            <td>{{ $data->task->expiration_date }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ __('Status:') }}</td>
+                            <td>{{ $data->task->statu->name }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ __('Credit for this household chores:') }}</td>
+                            <td>{{ $data->credit }}</td>
+                        </tr>
+                    </table>
                   </div>
             </div>
         </div>
         <div class="footer">
-            <p>&copy; © {{ date('Y') }} ChoresAppGE. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }} ChoresAppGE. All rights reserved.</p>
             <p><a href="">ChoresAppGE</a></p>
         </div>
     </div>
