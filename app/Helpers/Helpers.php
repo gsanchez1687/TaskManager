@@ -66,7 +66,7 @@ class Helpers
         if ($assigned) {
             return $assigned->user->name;
         } else {
-            return '<span class="badge badge-warning">Unassigned</span>';
+            return 'Unassigned';
         }
 
     }
