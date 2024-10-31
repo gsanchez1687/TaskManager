@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>{{ __('Historyhousehold chores') }}</h1>
+    <h1>{{ __('History household chores') }}</h1>
 @stop
 
 @section('content')
@@ -13,7 +13,7 @@
 
 <div class="card">
   <div class="card-header">
-    {{ __('Historyhousehold chores') }}
+    {{ __('History household chores') }}
   </div>
   <div class="card-body">
         <table id="history-table" class="table table-striped table-bordered">
