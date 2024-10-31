@@ -120,22 +120,22 @@
               <th>Days Passed</th>
               <th>Actions</th>
           </thead>
-          <tbody></tbody>
-              <?php $__currentLoopData = $taskUser; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                  <tr>
-                      <td><?php echo e($item->task->id); ?></td>
-                      <td><?php echo e($item->task->title); ?></td>
-                      <td><?php echo e($item->task->description); ?></td>
-                      <td><?php echo e($item->task->credit_for_task); ?></td>
-                      <td><?php echo e($item->task->expiration_date); ?></td>
-                      <td class="<?php echo e($item->task->statu->style); ?>"><?php echo e($item->task->statu->name); ?></td>
-                      <td><?php echo e(Helpers::getHoursPassed($item->task->hours_passed, ['format' => 'full','locale'=>'en'])); ?></td>
-                      <td>
-                          <a class="btn btn-primary btn-block" href="<?php echo e(route('view', $item->task->id)); ?>">Show</a>
-                          <a class="btn btn-primary btn-block" href="<?php echo e(route('task.update', $item->task->id)); ?>">Update</a>
-                      </td>
-                  </tr>
-              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+          <tbody>
+            <?php $__currentLoopData = $taskUser; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <tr>
+                <td><?php echo e($item->task->id); ?></td>
+                <td><?php echo e($item->task->title); ?></td>
+                <td><?php echo e($item->task->description); ?></td>
+                <td><?php echo e($item->task->credit_for_task); ?></td>
+                <td><?php echo e($item->task->expiration_date); ?></td>
+                <td class="<?php echo e($item->task->statu->style); ?>"><?php echo e($item->task->statu->name); ?></td>
+                <td><?php echo e(Helpers::getHoursPassed($item->task->hours_passed, ['format' => 'full','locale'=>'en'])); ?></td>
+                <td>
+                    <a class="btn btn-primary btn-block" href="<?php echo e(route('view', $item->task->id)); ?>">Show</a>
+                    <a class="btn btn-primary btn-block" href="<?php echo e(route('task.update', $item->task->id)); ?>">Update</a>
+                </td>
+            </tr>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
           </tbody>
         </table>
         <div class='mt-3'>

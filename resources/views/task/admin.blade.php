@@ -119,22 +119,22 @@
               <th>Days Passed</th>
               <th>Actions</th>
           </thead>
-          <tbody></tbody>
-              @foreach ($taskUser as $item)
-                  <tr>
-                      <td>{{ $item->task->id }}</td>
-                      <td>{{ $item->task->title }}</td>
-                      <td>{{ $item->task->description }}</td>
-                      <td>{{ $item->task->credit_for_task }}</td>
-                      <td>{{ $item->task->expiration_date }}</td>
-                      <td class="{{ $item->task->statu->style }}">{{ $item->task->statu->name }}</td>
-                      <td>{{ Helpers::getHoursPassed($item->task->hours_passed, ['format' => 'full','locale'=>'en']) }}</td>
-                      <td>
-                          <a class="btn btn-primary btn-block" href="{{ route('view', $item->task->id) }}">Show</a>
-                          <a class="btn btn-primary btn-block" href="{{ route('task.update', $item->task->id) }}">Update</a>
-                      </td>
-                  </tr>
-              @endforeach
+          <tbody>
+            @foreach ($taskUser as $item)
+            <tr>
+                <td>{{ $item->task->id }}</td>
+                <td>{{ $item->task->title }}</td>
+                <td>{{ $item->task->description }}</td>
+                <td>{{ $item->task->credit_for_task }}</td>
+                <td>{{ $item->task->expiration_date }}</td>
+                <td class="{{ $item->task->statu->style }}">{{ $item->task->statu->name }}</td>
+                <td>{{ Helpers::getHoursPassed($item->task->hours_passed, ['format' => 'full','locale'=>'en']) }}</td>
+                <td>
+                    <a class="btn btn-primary btn-block" href="{{ route('view', $item->task->id) }}">Show</a>
+                    <a class="btn btn-primary btn-block" href="{{ route('task.update', $item->task->id) }}">Update</a>
+                </td>
+            </tr>
+        @endforeach
           </tbody>
         </table>
         <div class='mt-3'>
