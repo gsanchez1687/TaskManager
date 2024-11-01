@@ -348,7 +348,7 @@ return [
                     'icon' => 'fas fa-fw fa-lock',
                 ],
             ],
-        ]
+        ],
     ],
 
     /*

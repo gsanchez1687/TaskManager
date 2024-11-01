@@ -19,11 +19,13 @@ class History extends Model
 
     //relaciones
 
-    public function taskuser() {
+    public function taskuser()
+    {
         return $this->belongsTo(TaskUser::class);
     }
 
-    public function statu() {
+    public function statu()
+    {
         return $this->belongsTo(Status::class);
     }
 }

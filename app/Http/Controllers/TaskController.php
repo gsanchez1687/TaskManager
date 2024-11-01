@@ -122,7 +122,7 @@ class TaskController extends Controller
 
                 if ($request->status == 5) {
                     if ($TaskUser->credit >= 0) {
-                        
+
                         //$TaskUser->credit = $TaskUser->credit + $task->credit_for_task;
                         $TaskUser->user->current_amount_total_credit = $TaskUser->user->current_amount_total_credit + $task->credit_for_task;
                         $TaskUser->save();
@@ -203,7 +203,8 @@ class TaskController extends Controller
         }
     }
 
-    public function setCurrentAmountTotalCredit($user_id, $amount){
+    public function setCurrentAmountTotalCredit($user_id, $amount)
+    {
 
         $user = User::where('id', $user_id)->first();
         $user->current_amount_total_credit = $amount;
