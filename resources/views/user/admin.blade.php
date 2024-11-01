@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>{{ __('Admin Daughter') }}</h1>
+    <h1>{{ __('Son Admin') }}</h1>
 @stop
 
 @section('content')
@@ -13,12 +13,12 @@
 
 <div class="card">
   <div class="card-header">
-    {{ __('Admin Daughter') }}
+    {{ __('Son Admin') }}
   </div>
 
   <div class="card-body">
     <div class="mb-3">
-      <a href="{{ route('user.create') }}" class="btn btn-primary">{{ __('New user son') }}</a>
+      <a href="{{ route('user.create') }}" class="btn btn-primary">{{ __('User Son') }}</a>
     </div>
     <div>
       @if (session('success'))

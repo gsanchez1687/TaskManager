@@ -1,7 +1,7 @@
 <?php $__env->startSection('title', 'Dashboard'); ?>
 
 <?php $__env->startSection('content_header'); ?>
-    <h1><?php echo e(__('Admin Daughter')); ?></h1>
+    <h1><?php echo e(__('Son Admin')); ?></h1>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -11,13 +11,13 @@
 
 <div class="card">
   <div class="card-header">
-    <?php echo e(__('Admin Daughter')); ?>
+    <?php echo e(__('Son Admin')); ?>
 
   </div>
 
   <div class="card-body">
     <div class="mb-3">
-      <a href="<?php echo e(route('user.create')); ?>" class="btn btn-primary"><?php echo e(__('New user son')); ?></a>
+      <a href="<?php echo e(route('user.create')); ?>" class="btn btn-primary"><?php echo e(__('User Son')); ?></a>
     </div>
     <div>
       <?php if(session('success')): ?>

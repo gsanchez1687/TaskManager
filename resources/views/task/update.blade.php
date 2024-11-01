@@ -64,10 +64,10 @@
             </tr>
           @if( Auth::user()->hasRole('Admin'))
             <tr>
-              <td>{{ __('Select Daughter:') }}</td>
+              <td>{{ __('Assign User:') }}</td>
               <td>
                 <select class="form-control" name="nonAdminUsers" id="nonAdminUsers">
-                    <option value="0">Select daughter...</option>
+                    <option value="0">Assign User...</option>
                     @foreach ($nonAdminUsers as $item)
                         <option {{ Helpers::getAssignedTaskById($task->id) == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
                     @endforeach

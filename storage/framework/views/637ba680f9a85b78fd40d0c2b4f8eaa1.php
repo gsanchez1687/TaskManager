@@ -65,10 +65,10 @@
             </tr>
           <?php if( Auth::user()->hasRole('Admin')): ?>
             <tr>
-              <td><?php echo e(__('Select Daughter:')); ?></td>
+              <td><?php echo e(__('Assign User:')); ?></td>
               <td>
                 <select class="form-control" name="nonAdminUsers" id="nonAdminUsers">
-                    <option value="0">Select daughter...</option>
+                    <option value="0">Assign User...</option>
                     <?php $__currentLoopData = $nonAdminUsers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <option <?php echo e(Helpers::getAssignedTaskById($task->id) == $item->id ? 'selected' : ''); ?> value="<?php echo e($item->id); ?>"><?php echo e($item->name); ?></option>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
