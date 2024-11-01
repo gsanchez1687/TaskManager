@@ -121,10 +121,12 @@ class TaskController extends Controller
                 }
 
                 if ($request->status == 5) {
-                    if ($TaskUser->credit == 0) {
-                        $TaskUser->credit = $TaskUser->credit + $task->credit_for_task;
+                    if ($TaskUser->credit >= 0) {
+                        
+                        //$TaskUser->credit = $TaskUser->credit + $task->credit_for_task;
                         $TaskUser->user->current_amount_total_credit = $TaskUser->user->current_amount_total_credit + $task->credit_for_task;
                         $TaskUser->save();
+                        $this->setCurrentAmountTotalCredit($TaskUser->user_id, $TaskUser->user->current_amount_total_credit);
                         Helpers::setHistory($TaskUser->id, $request->status, 'Household completed '.$TaskUser->user->name);
                     }
                     $task->credit_paid = 1;
@@ -199,5 +201,12 @@ class TaskController extends Controller
         if ($data) {
             Mail::to($data->user->email)->send(new Notification($data));
         }
+    }
+
+    public function setCurrentAmountTotalCredit($user_id, $amount){
+
+        $user = User::where('id', $user_id)->first();
+        $user->current_amount_total_credit = $amount;
+        $user->save();
     }
 }
